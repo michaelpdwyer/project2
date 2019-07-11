@@ -19,6 +19,8 @@ var config = {
 
 var player;
 var stars;
+var cages;
+var levers;
 var bombs;
 var platforms;
 var cursors;
@@ -33,6 +35,8 @@ function preload() {
   this.load.image("sky", "assets/sky.png");
   this.load.image("ground", "assets/platform.png");
   this.load.image("star", "assets/html.png");
+  this.load.image("cage", "assets/cage.png");
+  this.load.image("lever", "assets/leverOn.png");
   this.load.image("bomb", "assets/bomb.png");
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
@@ -98,17 +102,33 @@ function create() {
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
 
-  //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
-  stars = this.physics.add.group({
-    key: "star",
-    repeat: 11,
-    setXY: { x: 12, y: 0, stepX: 70 }
-  });
+  //  create stars, cages, and levers in designated places
 
-  stars.children.iterate(function(child) {
-    //  Give each star a slightly different bounce
-    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-  });
+  stars = this.physics.add.staticGroup();
+  stars.create(12, 82, "star");
+  stars.create(12, 322, "star");
+  stars.create(788, 112, "star");
+  stars.create(788, 422, "star");
+  stars.create(395, 230, "star");
+
+  cages = this.physics.add.staticGroup();
+  cages.create(12, 83, "cage");
+  cages.create(12, 323, "cage");
+  cages.create(788, 113, "cage");
+  cages.create(788, 423, "cage");
+  cages.create(395, 231, "cage");
+
+  levers = this.physics.add.staticGroup();
+  levers.create(48, 85, "lever");
+  levers.create(48, 325, "lever");
+  levers.create(752, 115, "lever");
+  levers.create(752, 425, "lever");
+  levers.create(431, 233, "lever");
+
+//   stars.children.iterate(function(child) {
+//     //  Give each star a slightly different bounce
+//     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+//   });
 
   bombs = this.physics.add.group();
 
@@ -121,10 +141,14 @@ function create() {
   //  Collide the player and the stars with the platforms
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(stars, platforms);
+  this.physics.add.collider(cages, platforms);
+  this.physics.add.collider(player, cages);
   this.physics.add.collider(bombs, platforms);
 
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
+
+// this.physics.add.overlap(player, levers, activateLever, null, this);
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
 }
