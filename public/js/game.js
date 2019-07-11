@@ -28,6 +28,8 @@ var score = 0;
 var gameOver = false;
 var scoreText;
 
+// var spaceKey;
+
 var game = new Phaser.Game(config);
 
 
@@ -45,6 +47,8 @@ function preload() {
 }
 
 function create() {
+//registers if space key is down
+  
   //  A simple background for our game
   this.add.image(400, 300, "sky");
 
@@ -58,7 +62,7 @@ function create() {
     .setScale(2)
     .refreshBody();
 
-    platforms
+  platforms
     .create(400, 250, "ground")
     .setScale(.5)
     .refreshBody();
@@ -101,6 +105,7 @@ function create() {
 
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
+//   spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
   //  create stars, cages, and levers in designated places
 
@@ -148,7 +153,7 @@ function create() {
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
 
-// this.physics.add.overlap(player, levers, activateLever, null, this);
+  this.physics.add.overlap(player, levers, activateLever, null, this);
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
 }
@@ -175,6 +180,10 @@ function update() {
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
   }
+
+//   if (this.spaceKey.isDown) {
+//     activateLever();
+//   }
 }
 
 function collectStar(player, star) {
@@ -201,6 +210,13 @@ function collectStar(player, star) {
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
     bomb.allowGravity = false;
   }
+}
+
+function activateLever(player, lever, cages) {
+  cages.destroy();
+
+  console.log("at lever")
+
 }
 
 function hitBomb(player, bomb) {
