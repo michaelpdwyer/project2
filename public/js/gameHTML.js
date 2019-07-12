@@ -60,7 +60,7 @@ function preload() {
   this.load.image("star", "assets/html.png");
   this.load.image("cage", "assets/cage.png");
   //this.load.image("lever", "assets/leverOn.png");
-  this.load.image("bomb", "assets/bomb.png");
+  this.load.image("bomb", "assets/bug.png");
   this.load.image("bullet", "assets/JSbullet.png");
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
@@ -167,6 +167,7 @@ function create() {
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(stars, platforms);
   this.physics.add.collider(cages, platforms);
+  this.physics.add.collider(bullets, platforms);
   this.physics.add.collider(player, cages);
   this.physics.add.collider(bombs, platforms);
 
@@ -176,6 +177,8 @@ function create() {
   //   this.physics.add.overlap(cage, bullets, removeCage, null, this);
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
+  this.physics.add.collider(bullets, cages, breakCage, null, this);
+  this.physics.add.collider(bullets, platforms, removeBullet, null, this);
 }
 
 function update() {
@@ -244,8 +247,12 @@ function collectStar(player, star) {
   if (stars.countActive(true) === 0) {
     //  A new batch of stars to collect
     stars.children.iterate(function(child) {
-      child.enableBody(true, child.x, 0, true, true);
+      child.enableBody(true, child.x, child.y, true, true);
     });
+
+    cages.children.iterate(function(child) {
+        child.enableBody(true, child.x, child.y, true, true);
+      });
 
     var x =
       player.x < 400
@@ -274,6 +281,18 @@ function hitBomb(player, bomb) {
   player.anims.play("turn");
 
   gameOver = true;
+}
+
+
+function breakCage (bullet, cage){
+
+    cage.disableBody(true, true);
+}
+
+
+
+function removeBullet (bullet){
+
 }
 
 // function shoot(pointer) {
