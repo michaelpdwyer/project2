@@ -214,7 +214,9 @@ function create() {
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
 
-  this.physics.add.collider(player, bombs, hitBomb, null, this);
+  
+
+  this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
 function update() {
@@ -277,7 +279,7 @@ function collectStar(player, star) {
   }
 }
 
-function hitBomb(player, bomb) {
+function hitWheel(player, wheel) {
   this.physics.pause();
 
   player.setTint(0xff0000);
