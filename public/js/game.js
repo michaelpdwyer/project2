@@ -28,6 +28,9 @@ var score = 0;
 var gameOver = false;
 var scoreText;
 
+var wheels;
+var tween;
+
 // var spaceKey;
 
 var game = new Phaser.Game(config);
@@ -44,13 +47,32 @@ function preload() {
     frameWidth: 32,
     frameHeight: 48
   });
+
+  this.load.image("wheel", "assets/wheelOfDeath.png");
 }
 
 function create() {
-//registers if space key is down
+
+
+
   
   //  A simple background for our game
   this.add.image(400, 300, "sky");
+
+  //creates wheel
+  wheels = this.physics.add.sprite(400, 300, "wheel");
+  wheels.setCollideWorldBounds(true);
+  wheels.angle = 45;
+
+  tween = this.tweens.add({
+    targets: wheels,
+    x: '-=64',
+    ease: 'Sine.easeInOut',
+    duration: 2000,
+    yoyo: true,
+    loop: -1
+});
+  
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
@@ -74,6 +96,7 @@ function create() {
   platforms.create(780, 140, "ground");
   platforms.create(40, 110, "ground");
   
+
 
   // The player and its settings
   player = this.physics.add.sprite(100, 450, "dude");
@@ -156,9 +179,15 @@ function create() {
   this.physics.add.overlap(player, levers, activateLever, null, this);
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+  
 }
 
 function update() {
+  wheels.angle += 0.5;
+
+
+
   if (gameOver) {
     return;
   }
@@ -218,6 +247,8 @@ function activateLever(player, lever, cages) {
   console.log("at lever")
 
 }
+
+
 
 function hitBomb(player, bomb) {
   this.physics.pause();
