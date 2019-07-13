@@ -36,7 +36,6 @@ var config = {
 var player;
 var stars;
 
-var bombs;
 var platforms;
 var cursors;
 var score = 0;
@@ -60,8 +59,6 @@ function preload() {
   this.load.image("sky", "assets/sky.png");
   this.load.image("ground", "assets/platform.png");
   this.load.image("star", "assets/css.png");
-
-  this.load.image("bomb", "assets/bomb.png");
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
     frameHeight: 48
@@ -78,11 +75,8 @@ function create() {
   //   wheels = this.physics.add.sprite(400, 300, "wheel");
 
   //   wheels.setCollideWorldBounds(true);
-     
 
   wheels = this.physics.add.group();
-  
-  
 
   wheel1 = wheels.create(410, 300, "wheel").setCollideWorldBounds(true);
   wheel2 = wheels.create(30, 300, "wheel").setCollideWorldBounds(true);
@@ -90,13 +84,11 @@ function create() {
   wheel4 = wheels.create(310, 20, "wheel").setCollideWorldBounds(true);
   wheel5 = wheels.create(30, 20, "wheel").setCollideWorldBounds(true);
 
-  
- 
- wheel1.angle = 45;
- wheel2.angle = 45;
- wheel3.angle = 45;
- wheel4.angle = 45;
- wheel5.angle = 45;
+  wheel1.angle = 45;
+  wheel2.angle = 45;
+  wheel3.angle = 45;
+  wheel4.angle = 45;
+  wheel5.angle = 45;
 
   this.tweens.add({
     targets: [wheel2, wheel5],
@@ -196,8 +188,6 @@ function create() {
   //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
   //   });
 
-  bombs = this.physics.add.group();
-
   //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
     fontSize: "32px",
@@ -209,22 +199,18 @@ function create() {
   this.physics.add.collider(stars, platforms);
   this.physics.add.collider(wheels, platforms);
 
-  this.physics.add.collider(bombs, platforms);
-
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
-
-  
 
   this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
 function update() {
-    wheel1.angle -= 0.5;
-    wheel2.angle -= 0.5;
-    wheel3.angle -= 0.5;
-    wheel4.angle -= 0.5;
-    wheel5.angle -= 0.5;
+  wheel1.angle -= 0.5;
+  wheel2.angle -= 0.5;
+  wheel3.angle -= 0.5;
+  wheel4.angle -= 0.5;
+  wheel5.angle -= 0.5;
 
   if (gameOver) {
     return;
@@ -270,21 +256,16 @@ function collectStar(player, star) {
       player.x < 400
         ? Phaser.Math.Between(400, 800)
         : Phaser.Math.Between(0, 400);
-
-    var bomb = bombs.create(x, 16, "bomb");
-    bomb.setBounce(1);
-    bomb.setCollideWorldBounds(true);
-    bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-    bomb.allowGravity = false;
   }
 }
 
-function hitWheel(player, wheel) {
-  this.physics.pause();
+  function hitWheel(player, wheel) {
+    this.physics.pause();
 
-  player.setTint(0xff0000);
+    player.setTint(0xff0000);
 
-  player.anims.play("turn");
+    player.anims.play("turn");
 
-  gameOver = true;
-}
+    gameOver = true;
+  }
+
