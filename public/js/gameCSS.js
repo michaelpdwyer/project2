@@ -49,11 +49,10 @@ var wheel2;
 var wheel3;
 var wheel4;
 var wheel5;
-var tween;
 
 // var spaceKey;
 
-var game = new Phaser.Game(config);
+new Phaser.Game(config);
 
 function preload() {
   this.load.image("sky", "assets/sky.png");
@@ -252,20 +251,18 @@ function collectStar(player, star) {
       child.enableBody(true, child.x, 0, true, true);
     });
 
-    var x =
-      player.x < 400
-        ? Phaser.Math.Between(400, 800)
-        : Phaser.Math.Between(0, 400);
+    player.x < 400
+      ? Phaser.Math.Between(400, 800)
+      : Phaser.Math.Between(0, 400);
   }
 }
 
-  function hitWheel(player, wheel) {
-    this.physics.pause();
+function hitWheel(player) {
+  this.physics.pause();
 
-    player.setTint(0xff0000);
+  player.setTint(0xff0000);
 
-    player.anims.play("turn");
+  player.anims.play("turn");
 
-    gameOver = true;
-  }
-
+  gameOver = true;
+}

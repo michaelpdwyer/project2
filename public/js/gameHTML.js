@@ -1,23 +1,18 @@
-// class gameHTML extends Phaser.Scene {
-//     constructor() {
-//         super({ key: "gameHTML" });
-//     }
+// var config = require(config);
 
-//     preload() {
-//         this.load.image("sky", "assets/sky.png");
-//         this.load.image("ground", "assets/platform.png");
-//         this.load.image("star", "assets/html.png");
-//         this.load.image("bomb", "assets/bomb.png");
-//         this.load.spritesheet("dude", "assets/dude.png", {
-//             frameWidth: 32,
-//             frameHeight: 48
-//         });
-//     }
+// module.exports = config;
+// // end of file
+// // -------------
+// //begin of file
+// var config = require("gameconfig");
 
-//     create() {
-//   //  A simple background for our game
-//   this.add.image(400, 300, "sky");
-//     }
+// var Game = require("mygame");
+
+// var myGame = new Game(config);
+
+// end of file
+// ---------------
+// begin of file
 
 var config = {
   type: Phaser.AUTO,
@@ -31,11 +26,7 @@ var config = {
       debug: false
     }
   },
-  scene: {
-    preload: preload,
-    create: create,
-    update: update
-  }
+  scene: Game
 };
 
 var player;
@@ -52,9 +43,16 @@ var bullets;
 
 // var spaceKey;
 
-var game = new Phaser.Game(config);
+function Game(config) {
+  Phaser.Game.call(this, config);
+}
 
-function preload() {
+Game.prototype = Object.create(Phaser.Game.prototype);
+Game.prototype.constructor = Game;
+
+// module.exports = Game;
+
+Game.prototype.preload = function() {
   this.load.image("sky", "assets/sky.png");
   this.load.image("ground", "assets/platform.png");
   this.load.image("star", "assets/html.png");
@@ -66,9 +64,9 @@ function preload() {
     frameWidth: 32,
     frameHeight: 48
   });
-}
+};
 
-function create() {
+Game.prototype.create = function() {
   //  A simple background for our game
   this.add.image(400, 300, "sky");
 
@@ -170,6 +168,7 @@ function create() {
   this.physics.add.collider(bullets, platforms);
   this.physics.add.collider(player, cages);
   this.physics.add.collider(bombs, platforms);
+  this.physics.add.collider(bullets, platforms);
 
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
@@ -178,10 +177,9 @@ function create() {
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
   this.physics.add.collider(bullets, cages, breakCage, null, this);
-  this.physics.add.collider(bullets, platforms, removeBullet, null, this);
-}
+};
 
-function update() {
+Game.prototype.update = function() {
   if (gameOver) {
     return;
   }
@@ -205,22 +203,15 @@ function update() {
   }
 
   if (this.input.activePointer.isDown) {
+    var bullet = bullets.getFirstDead(
+      true,
+      player.x - 8,
+      player.y - 8,
+      "bullet"
+    );
+    this.physics.moveTo(bullet, this.input.x, this.input.y, null, 750);
 
-  var bullet = bullets.getFirstDead(
-    true,
-    player.x - 8,
-    player.y - 8,
-    "bullet"
-  );
-  this.physics.moveTo(
-    bullet,
-    this.input.x,
-    this.input.y,
-    null,
-    750
-  );
-
-  bullet.setCollideWorldBounds(true);
+    bullet.setCollideWorldBounds(true);
   }
 
   //   if (this.spaceKey.isDown) {
@@ -236,7 +227,7 @@ function update() {
   //       }
   //     }.bind(this)
   //   );
-}
+};
 function collectStar(player, star) {
   star.disableBody(true, true);
 
@@ -251,8 +242,8 @@ function collectStar(player, star) {
     });
 
     cages.children.iterate(function(child) {
-        child.enableBody(true, child.x, child.y, true, true);
-      });
+      child.enableBody(true, child.x, child.y, true, true);
+    });
 
     var x =
       player.x < 400
@@ -273,7 +264,7 @@ function collectStar(player, star) {
 //   console.log("at lever");
 // }
 
-function hitBomb(player, bomb) {
+function hitBomb(player) {
   this.physics.pause();
 
   player.setTint(0xff0000);
@@ -283,17 +274,11 @@ function hitBomb(player, bomb) {
   gameOver = true;
 }
 
-
-function breakCage (bullet, cage){
-
-    cage.disableBody(true, true);
+function breakCage(bullet, cage) {
+  cage.disableBody(true, true);
 }
 
-
-
-function removeBullet (bullet){
-
-}
+// function removeBullet(bullet) {}
 
 // function shoot(pointer) {
 //   var bullet = this.bullets.get(pointer.x, pointer.y);
@@ -304,4 +289,5 @@ function removeBullet (bullet){
 //   }
 // }
 
-
+// example:
+new Game(config);
