@@ -29,11 +29,15 @@ $(document).ready(function() {
       password: password
     })
       .then(function() {
-        window.location.replace("/members");
+        window.location.replace("/game");
         // If there's an error, log the error
       })
       .catch(function(err) {
         console.log(err);
+        $("#alert .msg").text(
+          "Sorry, invalid username or password please try again."
+        );
+        $("#alert").fadeIn(500);
       });
   }
 });
