@@ -26,11 +26,7 @@ var config = {
       debug: false
     }
   },
-  scene: {
-    preload: preload,
-    create: create,
-    update: update
-  }
+  scene: Game2
 };
 
 var player;
@@ -38,9 +34,11 @@ var stars;
 
 var platforms;
 var cursors;
-var score = 0;
+
 var gameOver = false;
 var scoreText;
+var score = 0;
+
 
 var wheels;
 
@@ -51,10 +49,16 @@ var wheel4;
 var wheel5;
 
 // var spaceKey;
+function Game2(config) {
+  Phaser.Game.call(this, config);
+}
 
-new Phaser.Game(config);
+Game2.prototype = Object.create(Phaser.Game.prototype);
+Game2.prototype.constructor = Game2;
 
-function preload() {
+
+
+Game2.prototype.preload = function() {
   this.load.image("sky", "assets/sky.png");
   this.load.image("ground", "assets/platform.png");
   this.load.image("star", "assets/css.png");
@@ -66,7 +70,7 @@ function preload() {
   this.load.image("wheel", "assets/wheelOfDeath.png");
 }
 
-function create() {
+Game2.prototype.create = function() {
   //  A simple background for our game
   this.add.image(400, 300, "sky");
 
@@ -204,7 +208,7 @@ function create() {
   this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
-function update() {
+Game2.prototype.update = function() {
   wheel1.angle -= 0.5;
   wheel2.angle -= 0.5;
   wheel3.angle -= 0.5;
@@ -264,5 +268,25 @@ function hitWheel(player) {
 
   player.anims.play("turn");
 
+  $.get("/api/user_data", function(data) {
+    
+    var newScore = {
+      score: score,
+      UserID: data.id
+    }
+
+    console.log(newScore);
+    addScore(newScore);
+  });
+
+
   gameOver = true;
 }
+
+function addScore(score) {
+  $.post("/api/scores", score, function() {
+    console.log("score added");
+  });
+}
+
+new Game2(config);

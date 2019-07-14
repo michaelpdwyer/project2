@@ -69,6 +69,12 @@ module.exports = function(app) {
     }
   });
 
+  app.post("/api/scores", function(req, res) {
+    db.Game.create(req.body).then(function(dbScore) {
+      res.json(dbScore);
+    });
+  });
+
 
 
 };
