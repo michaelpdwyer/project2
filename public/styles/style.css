@@ -28,3 +28,16 @@ h2 {
 .btnFont {
   font-family: 'Press Start 2P', cursive;
 }
+
+#sidebar
+{
+    background-color: pink;
+    width: 200px;
+    position: fixed;
+    height: 100%;
+    right: 0px;
+    top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid rgba(84, 29, 91, 0.3);
+}

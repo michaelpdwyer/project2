@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "focus-nucleus-240701",
+    "private_key_id": "f1489b763e53edea05980a45d8a3f4389cdff681",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDNUTjEPGF6pMwT\nXstgKkBdazJxafjn0/V/oLr8FKfRTZPE1AmB5NSwv+ELmruMCYnZUFx8/fEgaIGe\nvrFh9peFRJKUay78n4yrN6lgo0KnYUwFGNbmVb671piuPKPA8BFvTUVugNyR2jUw\nPYTAXChJdI7bHkx0Kd8JU2pVZzMSOAOMIB+I7cyyN+4bRXDoOW2oRsY3fFpBkhlz\nmLWz0WOgpDGVR7rpXtRiT4l/rYcCTNHWIstE4oSST7oirrckcWR8ccyza5FkQ5d9\nwefR1RP2StjjeFpytpgUoDEMIK3Q3hAKw5XRFbEyQVODjfOgIBUo8VNEly1yWHdi\nnx/fOMK7AgMBAAECggEAOjogmTZuhrOZ1Jx7nOgenN+7zII7PrPT2cAhhz/sX+Va\nVOW1VIsq7n1cO0hEi/BgkarCsAfsjD5XFEgMUjX2vqq1zzWee7Jb2GrOtENYsdNc\nFc33lBcZIng3kKJN5neu2hvV5wLQiuSRVP79WPhJzJsrsGSlVgRR5nkrnNDJoQ6T\nmN2/4mB2DQ2rcwNNgI/YwqHeVd/1jhGRQT+/ufH+Wd01rezue2y6amPbxOqk6D4/\nhv2Xp+smQ63XFMuivGQFP14jWg3q/CDU9GIxXs94ZhWAuYllgTq8HaS1KHi+bAIR\nZMyb481AKsjwJw6Nb7Dd1L7rlIGInz7hCpUhk1ElAQKBgQDmg2nXGG+VpYaHDQDJ\nHJ30n59jBblNg0NtcAbBXeDBT03Y5UstERBvSgFxaPYivIdLTX0V5EE7cpS92cse\nFpvSRtrgCqvzmIDULa6ky5Uf3YYDxefPlDaTKGhaAbfVa96G0MZuQDlMOgAWCheC\nOCn1a7t7DdlIgGtR2cNb0aXbQQKBgQDkBKTczyRSPuqHhmSahO3ZeK5tJIHoUzba\nQVFsqvu7TizkwF5z4+MZYPHAljqFUUVEWOteFfcC5MbuQRVM22JYLMhj2uUtUYHK\nbk6FJwUYWwWyK7jwwlfWFilr61ZSLBP8D4KrGZ5+zxVfFSbvDCQbh5eiVq6B2HOh\nUD7oU7pK+wKBgHOxz2Rq2k50hqGv0A4gc9L8bqXnkIqr8CK0UF+q+4xqfjr3UpTq\n9KG2tiSytp7Wmt0bpkVfi7IHn0nuTvjqBgkzENXT5Vvc1gQobXg+ybj1mTa5lNBl\npkKTzFQoepj+i/CERqO9TkTI85QcOpJcGAsaqD1pxP2Tnsm1D009Ww5BAoGAYIxu\n2miDcqfdWsFXO+5pYBovkVtR/nOt2ECsH51OtgLmE345AE1QTeC0vN1fri+5arVU\nBCS80ObaLOw1/rMuMzPTLiTzwXqvwG1wpgTdrXBtOwI0bw17b9U2eNHPXT/4vlQ6\n+gQBDqTU4cvtDm9PorCJTl3xyl1CqN13pZw+V50CgYEA4wPjffpMZeNK/aj+70QE\nE55Bv3YmtGLnmCJe+asKoX/lbsCcUJeTktOx3VuCH/f2vi7hlzWL5cDrwSxHTPMh\ngx6a2laHZ+MvVjZjJZ5cgcFoLUX3EW3UBUPVVmcHy+wscV/7iBEP/LryG5wQuCCp\n58fgPc4i28DfqvAwowuWdAE=\n-----END PRIVATE KEY-----\n",
+    "client_email": "starting-account-3uksghyy0s9y@focus-nucleus-240701.iam.gserviceaccount.com",
+    "client_id": "112883478744411899504",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/starting-account-3uksghyy0s9y%40focus-nucleus-240701.iam.gserviceaccount.com"
+  }
