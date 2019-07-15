@@ -272,7 +272,25 @@ function hitBomb(player) {
 
   player.anims.play("turn");
 
+  $.get("/api/user_data", function(data) {
+    
+    var newScore = {
+      score: score,
+      UserId: data.id,
+      gameId: 1
+    }
+
+    console.log(newScore);
+    addScore1(newScore);
+  });
+
   gameOver = true;
+}
+
+function addScore1(score) {
+  $.post("/api/scores", score, function() {
+    console.log("score added");
+  });
 }
 
 function breakCage(bullet, cage) {
@@ -290,7 +308,7 @@ function breakCage(bullet, cage) {
 //   }
 // }
 
-// example:
+
 
 
 

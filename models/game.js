@@ -1,8 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
   var Game = sequelize.define("Game", {
-    score:{ 
-        type: DataTypes.INTEGER,
-        allowNull:false}
+    score: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    gameId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   });
 
   Game.associate = function(models) {

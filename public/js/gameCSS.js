@@ -205,7 +205,7 @@ Game2.prototype.create = function() {
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar2 function
   this.physics.add.overlap(player, stars, collectStar2, null, this);
 
-  //this.physics.add.collider(player, wheels, hitWheel, null, this);
+  this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
 Game2.prototype.update = function() {
@@ -272,18 +272,19 @@ function hitWheel(player) {
     
     var newScore = {
       score: score,
-      UserId: data.id
+      UserId: data.id,
+      gameId: 2
     }
 
     console.log(newScore);
-    addScore(newScore);
+    addScore2(newScore);
   });
 
 
   gameOver = true;
 }
 
-function addScore(score) {
+function addScore2(score) {
   $.post("/api/scores", score, function() {
     console.log("score added");
   });

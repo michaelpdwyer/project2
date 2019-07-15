@@ -97,3 +97,15 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+
+ $("#game1").on("click", function(){
+   $("#gameHere").empty();
+   new Game1(config);
+  });
+
+ $("#game2").on("click", function(){
+  $("#gameHere").empty();
+   new Game2(config2);
+})
+
