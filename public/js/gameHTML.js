@@ -211,7 +211,7 @@ Game1.prototype.update = function() {
     );
     this.physics.moveTo(bullet, this.input.x, this.input.y, null, 750);
 
-    bullet.setCollideWorldBounds(true);
+    //bullet.setCollideWorldBounds(true);
   }
 
   //   if (this.spaceKey.isDown) {
@@ -241,6 +241,7 @@ function collectStar(player, star) {
       child.enableBody(true, child.x, child.y, true, true);
     });
 
+    
     cages.children.iterate(function(child) {
       child.enableBody(true, child.x, child.y, true, true);
     });
@@ -290,4 +291,9 @@ function breakCage(bullet, cage) {
 // }
 
 // example:
-new Game1(config);
+
+
+
+
+
+// new Game1(config);

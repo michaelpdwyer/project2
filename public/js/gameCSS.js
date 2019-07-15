@@ -14,7 +14,7 @@
 //         });
 //     }
 
-var config = {
+var config2 = {
   type: Phaser.AUTO,
   parent: "gameHere",
   width: 800,
@@ -49,8 +49,8 @@ var wheel4;
 var wheel5;
 
 // var spaceKey;
-function Game2(config) {
-  Phaser.Game.call(this, config);
+function Game2(config2) {
+  Phaser.Game.call(this, config2);
 }
 
 Game2.prototype = Object.create(Phaser.Game.prototype);
@@ -202,10 +202,10 @@ Game2.prototype.create = function() {
   this.physics.add.collider(stars, platforms);
   this.physics.add.collider(wheels, platforms);
 
-  //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-  this.physics.add.overlap(player, stars, collectStar, null, this);
+  //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar2 function
+  this.physics.add.overlap(player, stars, collectStar2, null, this);
 
-  this.physics.add.collider(player, wheels, hitWheel, null, this);
+  //this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
 Game2.prototype.update = function() {
@@ -242,7 +242,7 @@ Game2.prototype.update = function() {
   //   }
 }
 
-function collectStar(player, star) {
+function collectStar2(player, star) {
   star.disableBody(true, true);
 
   //  Add and update the score
@@ -272,7 +272,7 @@ function hitWheel(player) {
     
     var newScore = {
       score: score,
-      UserID: data.id
+      UserId: data.id
     }
 
     console.log(newScore);
@@ -289,4 +289,4 @@ function addScore(score) {
   });
 }
 
-new Game2(config);
+//new Game2(config2);
