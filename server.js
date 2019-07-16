@@ -1,7 +1,10 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-
+// var app = express();
+// var server = require('http').Server(app);
+// var io = require('socket.io')(server);
+// var {Translate} = require('@google-cloud/translate');
 var db = require("./models");
 
 var app = express();
@@ -32,6 +35,52 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+
+
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
+
+// app.get('/javascript', (req, res) => {
+//   res.sendFile(__dirname + '/public/javascript.html');
+// });
+
+// app.get('/HTML', (req, res) => {
+//   res.sendFile(__dirname + '/public/HTML.html');
+// });
+
+// app.get('/css', (req, res) => {
+//   res.sendFile(__dirname + '/public/css.html');
+// });
+
+// // tech namespace
+// var tech = io.of('/tech');
+
+// tech.on('connection', (socket) => {
+//   socket.on('join', (data) => {
+//       socket.join(data.room);
+//       tech.in(data.room).emit('message', `New user joined ${data.room} room!`);
+//   })
+
+//   socket.on('message', (data) => {
+//       console.log(`message: ${data.msg}`);
+//       var translate = new Translate({projectId:'focus-nucleus-240701'});
+//         var text = data.msg;
+//         var target = 'am';
+//         translate
+//         .translate(text, target)
+//         .then(results => {
+//             console.log(results[0]);
+//             tech.in(data.room).emit('message', results[0]);
+//            }).catch(err => {console.error('ERROR:', err);});
+//           });
+
+//   socket.on('disconnect', () => {
+//       console.log('user disconnected');
+
+//       tech.emit('message', 'user disconnected');
+//   })
+// })
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
