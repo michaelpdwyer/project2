@@ -38,7 +38,7 @@ module.exports = function(app) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("index", {
         msg: "Welcome!",
-        examples: dbExamples
+        name: dbExamples
       });
     });
   });
@@ -53,6 +53,38 @@ module.exports = function(app) {
       });
     });
   });
+
+  // // Load example page and pass in an example by id
+  // app.get("/score/:id", function(req, res) {
+  //   db.Game.findAll({ where: { gameId: req.params.id } }).then(function(
+  //     dbExample
+  //   ) {
+  //     res.render("game" + req.params.id, {
+  //       example: dbExample
+  //     });
+  //   });
+  // });
+
+  app.get("/game1", function(req, res) {
+    db.Game.findAll({ where: { gameId: 1 } }).then(function(
+      dbExample
+    ) {
+      res.render("game1", {
+        example: dbExample
+      });
+    });
+  });
+
+  app.get("/game2", function(req, res) {
+    db.Game.findAll({ where: { gameId: 2 } }).then(function(
+      dbExample
+    ) {
+      res.render("game2", {
+        example: dbExample
+      });
+    });
+  });
+
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {

@@ -16,7 +16,7 @@
 
 var config = {
   type: Phaser.AUTO,
-  parent: "gameHere",
+  parent: "gameHere1",
   width: 800,
   height: 600,
   physics: {
@@ -314,4 +314,4 @@ function breakCage(bullet, cage) {
 
 
 
-// new Game1(config);
+ new Game1(config);

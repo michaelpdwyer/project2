@@ -16,7 +16,7 @@
 
 var config2 = {
   type: Phaser.AUTO,
-  parent: "gameHere",
+  parent: "gameHere2",
   width: 800,
   height: 600,
   physics: {
@@ -290,4 +290,4 @@ function addScore2(score) {
   });
 }
 
-//new Game2(config2);
+new Game2(config2);

@@ -75,6 +75,14 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/scores/:id", function(req, res) {
+    db.Game.findAll({
+       where: { gameId: req.params.id } 
+    }).then(function(dbExamples) {
+      res.json(dbExamples);
+    });
+  });
+
 
 
 };
