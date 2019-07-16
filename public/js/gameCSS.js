@@ -26,7 +26,11 @@ var config2 = {
       debug: false
     }
   },
-  scene: Game2
+  scene: {
+    preload: preload,
+    create: create,
+    update: update
+  }
 };
 
 var player;
@@ -48,17 +52,21 @@ var wheel3;
 var wheel4;
 var wheel5;
 
+new Phaser.Game(config2);
+
 // var spaceKey;
-function Game2(config2) {
-  Phaser.Game.call(this, config2);
-}
+// function Game2(config2) {
+//   Phaser.Game.call(this, config2);
+// }
 
-Game2.prototype = Object.create(Phaser.Game.prototype);
-Game2.prototype.constructor = Game2;
+// Game2.prototype = Object.create(Phaser.Game.prototype);
+// Game2.prototype.constructor = Game2;
 
 
 
-Game2.prototype.preload = function() {
+// Game2.prototype.preload = 
+
+function preload() {
   this.load.image("sky", "assets/sky.png");
   this.load.image("ground", "assets/platform.png");
   this.load.image("star", "assets/css.png");
@@ -70,7 +78,9 @@ Game2.prototype.preload = function() {
   this.load.image("wheel", "assets/wheelOfDeath.png");
 }
 
-Game2.prototype.create = function() {
+// Game2.prototype.create = 
+
+function create() {
   //  A simple background for our game
   this.add.image(400, 300, "sky");
 
@@ -208,7 +218,9 @@ Game2.prototype.create = function() {
   this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
-Game2.prototype.update = function() {
+// Game2.prototype.update = 
+
+function update() {
   wheel1.angle -= 0.5;
   wheel2.angle -= 0.5;
   wheel3.angle -= 0.5;
@@ -290,4 +302,4 @@ function addScore2(score) {
   });
 }
 
-new Game2(config2);
+// new Game2(config2);

@@ -26,7 +26,11 @@ var config = {
       debug: false
     }
   },
-  scene: Game1
+  scene: {
+    preload: preload,
+    create: create,
+    update: update
+  }
 };
 
 var player;
@@ -43,16 +47,21 @@ var bullets;
 
 // var spaceKey;
 
-function Game1(config) {
-  Phaser.Game.call(this, config);
-}
 
-Game1.prototype = Object.create(Phaser.Game.prototype);
-Game1.prototype.constructor = Game1;
+new Phaser.Game(config);
+
+// function Game1(config) {
+//   Phaser.Game.call(this, config);
+// }
+
+// Game1.prototype = Object.create(Phaser.Game.prototype);
+// Game1.prototype.constructor = Game1;
 
 // module.exports = Game;
 
-Game1.prototype.preload = function() {
+// Game1.prototype.preload =
+
+function preload() {
   this.load.image("sky", "assets/sky.png");
   this.load.image("ground", "assets/platform.png");
   this.load.image("star", "assets/html.png");
@@ -66,7 +75,8 @@ Game1.prototype.preload = function() {
   });
 };
 
-Game1.prototype.create = function() {
+// Game1.prototype.create = 
+function create() {
   //  A simple background for our game
   this.add.image(400, 300, "sky");
 
@@ -179,7 +189,9 @@ Game1.prototype.create = function() {
   this.physics.add.collider(bullets, cages, breakCage, null, this);
 };
 
-Game1.prototype.update = function() {
+// Game1.prototype.update = 
+
+function update() {
   if (gameOver) {
     return;
   }
@@ -314,4 +326,4 @@ function breakCage(bullet, cage) {
 
 
 
- new Game1(config);
+//  new Game1(config);
