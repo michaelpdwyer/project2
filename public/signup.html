@@ -6,47 +6,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link href="styles/style.css" rel="stylesheet">
+  <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <h1>Blocker Buster</h1>
       </div>
     </div>
   </nav>
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h2>Sign up!</h2>
+        <h2>Sign Up Form</h2>
         <form class="signup">
           <div class="form-group">
-            <label for="exampleInputFirstName" class="inputColor">First name</label>
-            <input type="text" class="form-control" id="firstName-input" placeholder="First name">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputLastName" class="inputColor">Last name</label>
-            <input type="text" class="form-control" id="lastName-input" placeholder="Last name">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1" class="inputColor">Email address</label>
+            <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="email-input" placeholder="Email">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1" class="inputColor">Password</label>
+            <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="password-input" placeholder="Password">
           </div>
           <div style="display: none" id="alert" class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-default btnFont">Sign Up</button>
+          <button type="submit" class="btn btn-default">Sign Up</button>
         </form>
         <br />
-        <p>...or log in <a href="/login">here</a>.</p>
+        <p>Or log in <a href="/login">here</a></p>
       </div>
     </div>
   </div>

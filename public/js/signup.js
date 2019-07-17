@@ -1,8 +1,6 @@
 $(document).ready(function() {
   // Getting references to our form and input
   var signUpForm = $("form.signup");
-  var firstNameInput = $("input#firstName-input")
-  var lastNameInput = $("input#lastName-input")
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
 
@@ -10,19 +8,15 @@ $(document).ready(function() {
   signUpForm.on("submit", function(event) {
     event.preventDefault();
     var userData = {
-      firstName: firstNameInput.val().trim(),
-      lastName: lastNameInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
 
-    if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
+    if (!userData.email || !userData.password) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.firstName, userData.lastName, userData.email, userData.password);
-    firstNameInput.val("");
-    lastNameInput.val("");
+    signUpUser(userData.email, userData.password);
     emailInput.val("");
     passwordInput.val("");
   });
@@ -31,20 +25,18 @@ $(document).ready(function() {
   // Otherwise we log any errors
   function signUpUser(email, password) {
     $.post("/api/signup", {
-      firstName: firstName,
-      lastName: lastName,
       email: email,
       password: password
     })
       .then(function(data) {
-        window.location.replace("/members");
+        window.location.replace("/game");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    $("#alert .msg").text("Sorry that accout already exists please try logging in ");
     $("#alert").fadeIn(500);
   }
 });

@@ -2,8 +2,8 @@
   "development": {
     "username": "root",
 
-    "password": "Password123",
-    "database": "users_db",
+    "password": "Flipper1",
+    "database": "exampledb",
     "host": "127.0.0.1",
 
     "dialect": "mysql"
