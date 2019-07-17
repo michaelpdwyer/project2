@@ -18,7 +18,7 @@ var config2 = {
   type: Phaser.AUTO,
   parent: "gameHere2",
   width: 800,
-  height: 600,
+  height: 608,
   physics: {
     default: "arcade",
     arcade: {
@@ -67,8 +67,10 @@ new Phaser.Game(config2);
 // Game2.prototype.preload = 
 
 function preload() {
-  this.load.image("sky", "assets/sky.png");
-  this.load.image("ground", "assets/platform.png");
+  this.load.image("background", "assets/background.jpg");
+  this.load.image("groundSmall", "assets/groundSmall.png");
+  this.load.image("groundMedium", "assets/groundMedium.png");
+  this.load.image("groundLarge", "assets/groundLarge.png");
   this.load.image("star", "assets/css.png");
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
@@ -137,23 +139,14 @@ function create() {
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
-  //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-  platforms
-    .create(400, 568, "ground")
-    .setScale(2)
-    .refreshBody();
+  platforms.create(400, 576, "bottom");
 
-  platforms
-    .create(400, 250, "ground")
-    .setScale(0.5)
-    .refreshBody();
-
-  //  Now let's create some ledges
-  platforms.create(600, 450, "ground");
-  platforms.create(50, 350, "ground");
-  platforms.create(750, 800, "ground");
-  platforms.create(780, 140, "ground");
-  platforms.create(40, 110, "ground");
+  //ledges
+  platforms.create(432, 272, "groundSmall");
+  platforms.create(656, 432, "groundLarge");
+  platforms.create(672, 144, "groundMedium");
+  platforms.create(128, 176, "groundMedium");
+  platforms.create(144, 400, "groundLarge");
 
   // The player and its settings
   player = this.physics.add.sprite(100, 450, "dude");
@@ -190,11 +183,11 @@ function create() {
   //  create stars, cages, and levers in designated places
 
   stars = this.physics.add.staticGroup();
-  stars.create(12, 82, "star");
-  stars.create(12, 322, "star");
-  stars.create(788, 112, "star");
-  stars.create(788, 422, "star");
-  stars.create(395, 230, "star");
+  stars.create(432, 240, "star");
+  stars.create(656, 400, "star");
+  stars.create(672, 112, "star");
+  stars.create(128, 144, "star");
+  stars.create(144, 368, "star");
 
   //   stars.children.iterate(function(child) {
   //     //  Give each star a slightly different bounce

@@ -1,3 +1,9 @@
+
+
+
+
+
+
 // var config = require(config);
 
 // module.exports = config;
@@ -18,7 +24,7 @@ var config = {
     type: Phaser.AUTO,
     parent: "gameHere1",
     width: 800,
-    height: 600,
+    height: 608,
     physics: {
       default: "arcade",
       arcade: {
@@ -34,16 +40,19 @@ var config = {
   };
   
   var player;
-  var stars;
+  var htmls;
   var cages;
+  var stars;
   //var levers;
   var bombs;
-  var platforms;
+  var groundLayer;
   var cursors;
   var score = 0;
   var gameOver = false;
   var scoreText;
   var bullets;
+  
+  var map;
   
   // var spaceKey;
   
@@ -62,10 +71,25 @@ var config = {
   // Game1.prototype.preload =
   
   function preload() {
-    this.load.image("sky", "assets/sky.png");
-    this.load.image("ground", "assets/platform.png");
-    this.load.image("star", "assets/html.png");
-    this.load.image("cage", "assets/cage.png");
+  
+  
+    // map made with Tiled in JSON format
+    this.load.tilemapTiledJSON('game1', '/assets/game1.json');
+    //  load tiles ground
+    this.load.image('ruin', '/assets/ruin.png', { frameWidth: 32, frameHeight: 32 });
+    //  load simple coin image
+    this.load.image('html', '/assets/html.png');
+    //  load simple background
+    this.load.image('background', '/assets/background.jpg');
+    //  load simple player image
+    // this.load.image('player', '/assets/images/player.png');
+    // load simple monster image
+    this.load.image('cage', '/assets/cage.png');
+  
+    // this.load.image("sky", "assets/sky.png");
+    // this.load.image("ground", "assets/platform.png");
+    // this.load.image("star", "assets/html.png");
+    // this.load.image("cage", "assets/cage.png");
     //this.load.image("lever", "assets/leverOn.png");
     this.load.image("bomb", "assets/bug.png");
     this.load.image("bullet", "assets/JSbullet.png");
@@ -77,33 +101,52 @@ var config = {
   
   // Game1.prototype.create = 
   function create() {
-    //  A simple background for our game
-    this.add.image(400, 300, "sky");
   
-    //  The platforms group contains the ground and the 2 ledges we can jump on
-    platforms = this.physics.add.staticGroup();
+    // load the map
+    map = this.make.tilemap({ key: 'game1' });
   
-    //  Here we create the ground.
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms
-      .create(400, 568, "ground")
-      .setScale(2)
-      .refreshBody();
+    // load the background image
+    this.add.image(400, 304, 'background');
   
-    platforms
-      .create(400, 250, "ground")
-      .setScale(0.5)
-      .refreshBody();
+    // tiles for the ground layer
+    var groundTiles = map.addTilesetImage('ruin');
   
-    //  Now let's create some ledges
-    platforms.create(600, 450, "ground");
-    platforms.create(50, 350, "ground");
-    platforms.create(750, 800, "ground");
-    platforms.create(780, 140, "ground");
-    platforms.create(40, 110, "ground");
+    // create the ground layer
+    groundLayer = map.createDynamicLayer('tiles', groundTiles, 0, 0);
+  
+    // the player will collide with this layer
+    groundLayer.setCollisionByExclusion([-1]);
+  
+    // set the boundaries of our game world
+    this.physics.world.bounds.width = groundLayer.width;
+    this.physics.world.bounds.height = groundLayer.height;
+    // //  A simple background for our game
+    // this.add.image(400, 300, "sky");
+  
+    // //  The platforms group contains the ground and the 2 ledges we can jump on
+    // platforms = this.physics.add.staticGroup();
+  
+    // //  Here we create the ground.
+    // //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
+    // platforms
+    //   .create(400, 568, "ground")
+    //   .setScale(2)
+    //   .refreshBody();
+  
+    // platforms
+    //   .create(400, 250, "ground")
+    //   .setScale(0.5)
+    //   .refreshBody();
+  
+    // //  Now let's create some ledges
+    // platforms.create(600, 450, "ground");
+    // platforms.create(50, 350, "ground");
+    // platforms.create(750, 800, "ground");
+    // platforms.create(780, 140, "ground");
+    // platforms.create(40, 110, "ground");
   
     // The player and its settings
-    player = this.physics.add.sprite(100, 450, "dude");
+    player = this.physics.add.sprite(32, 500, "dude");
   
     //  Player physics properties. Give the little guy a slight bounce.
     player.setBounce(0.2);
@@ -136,19 +179,37 @@ var config = {
   
     //  create stars, cages, and levers in designated places
   
-    stars = this.physics.add.staticGroup();
-    stars.create(12, 82, "star");
-    stars.create(12, 322, "star");
-    stars.create(788, 112, "star");
-    stars.create(788, 422, "star");
-    stars.create(395, 230, "star");
+    stars = map.createFromObjects("htmls", "html", { key: 'html' });
+     this.physics.world.enable(stars);
+     for (var i = 0; i < stars.length; i++) {
+      stars[i].body.setAllowGravity(false);
+     };
   
-    cages = this.physics.add.staticGroup();
-    cages.create(12, 83, "cage");
-    cages.create(12, 323, "cage");
-    cages.create(788, 113, "cage");
-    cages.create(788, 423, "cage");
-    cages.create(395, 231, "cage");
+    
+  
+  
+  
+  
+    cages = map.createFromObjects("cages", "cage", { key: 'cage' });
+     this.physics.world.enable(cages);
+     for (var i = 0; i < cages.length; i++) {
+      cages[i].body.setAllowGravity(false);
+    };
+  
+  
+    // stars = this.physics.add.staticGroup();
+    // stars.create(12, 82, "star");
+    // stars.create(12, 322, "star");
+    // stars.create(788, 112, "star");
+    // stars.create(788, 422, "star");
+    // stars.create(395, 230, "star");
+  
+    // cages = this.physics.add.staticGroup();
+    // cages.create(12, 83, "cage");
+    // cages.create(12, 323, "cage");
+    // cages.create(788, 113, "cage");
+    // cages.create(788, 423, "cage");
+    // cages.create(395, 231, "cage");
   
     //   levers = this.physics.add.staticGroup();
     //   levers.create(48, 85, "lever");
@@ -172,13 +233,13 @@ var config = {
     });
   
     //  Collide the player and the stars with the platforms
-    this.physics.add.collider(player, platforms);
-    this.physics.add.collider(stars, platforms);
-    this.physics.add.collider(cages, platforms);
-    this.physics.add.collider(bullets, platforms);
+    this.physics.add.collider(player, groundLayer);
+    this.physics.add.collider(stars, groundLayer);
+    this.physics.add.collider(cages, groundLayer);
+    this.physics.add.collider(bullets, groundLayer);
     this.physics.add.collider(player, cages);
-    this.physics.add.collider(bombs, platforms);
-    this.physics.add.collider(bullets, platforms);
+    this.physics.add.collider(bombs, groundLayer);
+    
   
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     this.physics.add.overlap(player, stars, collectStar, null, this);
@@ -241,16 +302,16 @@ var config = {
     //   );
   };
   function collectStar(player, star) {
-    star.disableBody(true, true);
+    star.destroy(star.x, star.y);
   
     //  Add and update the score
     score += 10;
     scoreText.setText("Score: " + score);
   
-    if (stars.countActive(true) === 0) {
+    if (htmls.countActive(true) === 0) {
       //  A new batch of stars to collect
-      stars.children.iterate(function(child) {
-        child.enableBody(true, child.x, child.y, true, true);
+      htmls.children.iterate(function(child) {
+        html.enableBody(true, child.x, child.y, true, true);
       });
   
       
@@ -306,7 +367,7 @@ var config = {
   }
   
   function breakCage(bullet, cage) {
-    cage.disableBody(true, true);
+    cage.destroy(cage.x, cage.y);
   }
   
   // function removeBullet(bullet) {}
