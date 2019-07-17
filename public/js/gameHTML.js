@@ -173,8 +173,10 @@ function create() {
 
   //  create stars, cages, and levers in designated places
 
-  map.createFromObjects("htmls", "html", { key: 'html' });
+  stars = map.createFromObjects("htmls", "html", { key: 'html' });
   stars = this.add.group();
+
+
 
   map.createFromObjects("cages", "cage", { key: 'cage' });
   cages = this.add.group();
