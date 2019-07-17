@@ -34,8 +34,8 @@
         <ul id="example-list" class="list-group">
           {{#each example}}
           <li data-id="{{UserId}}" class="list-group-item">
-            <a href="example/{{UserId}}">{{UserId}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+            <div><strong>User ID: {{UserId}}</strong></div>
+            <div>Score: {{score}}</div>
           </li>
           {{/each}}
         </ul>
