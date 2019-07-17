@@ -1,27 +1,22 @@
-// class gameHTML extends Phaser.Scene {
-//     constructor() {
-//         super({ key: "gameHTML" });
-//     }
+// var config = require(config);
 
-//     preload() {
-//         this.load.image("sky", "assets/sky.png");
-//         this.load.image("ground", "assets/platform.png");
-//         this.load.image("star", "assets/html.png");
-//         this.load.image("bomb", "assets/bomb.png");
-//         this.load.spritesheet("dude", "assets/dude.png", {
-//             frameWidth: 32,
-//             frameHeight: 48
-//         });
-//     }
+// module.exports = config;
+// // end of file
+// // -------------
+// //begin of file
+// var config = require("gameconfig");
 
-//     create() {
-//   //  A simple background for our game
-//   this.add.image(400, 300, "sky");
-//     }
+// var Game = require("mygame");
+
+// var myGame = new Game(config);
+
+// end of file
+// ---------------
+// begin of file
 
 var config = {
   type: Phaser.AUTO,
-  parent: "gameHere",
+  parent: "gameHere1",
   width: 800,
   height: 600,
   physics: {
@@ -52,7 +47,19 @@ var bullets;
 
 // var spaceKey;
 
-var game = new Phaser.Game(config);
+
+new Phaser.Game(config);
+
+// function Game1(config) {
+//   Phaser.Game.call(this, config);
+// }
+
+// Game1.prototype = Object.create(Phaser.Game.prototype);
+// Game1.prototype.constructor = Game1;
+
+// module.exports = Game;
+
+// Game1.prototype.preload =
 
 function preload() {
   this.load.image("sky", "assets/sky.png");
@@ -66,8 +73,9 @@ function preload() {
     frameWidth: 32,
     frameHeight: 48
   });
-}
+};
 
+// Game1.prototype.create = 
 function create() {
   //  A simple background for our game
   this.add.image(400, 300, "sky");
@@ -170,6 +178,7 @@ function create() {
   this.physics.add.collider(bullets, platforms);
   this.physics.add.collider(player, cages);
   this.physics.add.collider(bombs, platforms);
+  this.physics.add.collider(bullets, platforms);
 
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
@@ -178,8 +187,9 @@ function create() {
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
   this.physics.add.collider(bullets, cages, breakCage, null, this);
-  this.physics.add.collider(bullets, platforms, removeBullet, null, this);
-}
+};
+
+// Game1.prototype.update = 
 
 function update() {
   if (gameOver) {
@@ -205,22 +215,15 @@ function update() {
   }
 
   if (this.input.activePointer.isDown) {
+    var bullet = bullets.getFirstDead(
+      true,
+      player.x - 8,
+      player.y - 8,
+      "bullet"
+    );
+    this.physics.moveTo(bullet, this.input.x, this.input.y, null, 750);
 
-  var bullet = bullets.getFirstDead(
-    true,
-    player.x - 8,
-    player.y - 8,
-    "bullet"
-  );
-  this.physics.moveTo(
-    bullet,
-    this.input.x,
-    this.input.y,
-    null,
-    750
-  );
-
-  bullet.setCollideWorldBounds(true);
+    //bullet.setCollideWorldBounds(true);
   }
 
   //   if (this.spaceKey.isDown) {
@@ -236,7 +239,7 @@ function update() {
   //       }
   //     }.bind(this)
   //   );
-}
+};
 function collectStar(player, star) {
   star.disableBody(true, true);
 
@@ -250,9 +253,10 @@ function collectStar(player, star) {
       child.enableBody(true, child.x, child.y, true, true);
     });
 
+    
     cages.children.iterate(function(child) {
-        child.enableBody(true, child.x, child.y, true, true);
-      });
+      child.enableBody(true, child.x, child.y, true, true);
+    });
 
     var x =
       player.x < 400
@@ -273,27 +277,39 @@ function collectStar(player, star) {
 //   console.log("at lever");
 // }
 
-function hitBomb(player, bomb) {
+function hitBomb(player) {
   this.physics.pause();
 
   player.setTint(0xff0000);
 
   player.anims.play("turn");
 
+  $.get("/api/user_data", function(data) {
+    
+    var newScore = {
+      score: score,
+      UserId: data.id,
+      gameId: 1
+    }
+
+    console.log(newScore);
+    addScore1(newScore);
+  });
+
   gameOver = true;
 }
 
-
-function breakCage (bullet, cage){
-
-    cage.disableBody(true, true);
+function addScore1(score) {
+  $.post("/api/scores", score, function() {
+    console.log("score added");
+  });
 }
 
-
-
-function removeBullet (bullet){
-
+function breakCage(bullet, cage) {
+  cage.disableBody(true, true);
 }
+
+// function removeBullet(bullet) {}
 
 // function shoot(pointer) {
 //   var bullet = this.bullets.get(pointer.x, pointer.y);
@@ -305,3 +321,9 @@ function removeBullet (bullet){
 // }
 
 
+
+
+
+
+
+//  new Game1(config);

@@ -14,9 +14,9 @@
 //         });
 //     }
 
-var config = {
+var config2 = {
   type: Phaser.AUTO,
-  parent: "gameHere",
+  parent: "gameHere2",
   width: 800,
   height: 600,
   physics: {
@@ -38,9 +38,11 @@ var stars;
 
 var platforms;
 var cursors;
-var score = 0;
+
 var gameOver = false;
 var scoreText;
+var score = 0;
+
 
 var wheels;
 
@@ -49,11 +51,20 @@ var wheel2;
 var wheel3;
 var wheel4;
 var wheel5;
-var tween;
+
+new Phaser.Game(config2);
 
 // var spaceKey;
+// function Game2(config2) {
+//   Phaser.Game.call(this, config2);
+// }
 
-var game = new Phaser.Game(config);
+// Game2.prototype = Object.create(Phaser.Game.prototype);
+// Game2.prototype.constructor = Game2;
+
+
+
+// Game2.prototype.preload = 
 
 function preload() {
   this.load.image("sky", "assets/sky.png");
@@ -66,6 +77,8 @@ function preload() {
 
   this.load.image("wheel", "assets/wheelOfDeath.png");
 }
+
+// Game2.prototype.create = 
 
 function create() {
   //  A simple background for our game
@@ -199,11 +212,13 @@ function create() {
   this.physics.add.collider(stars, platforms);
   this.physics.add.collider(wheels, platforms);
 
-  //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-  this.physics.add.overlap(player, stars, collectStar, null, this);
+  //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar2 function
+  this.physics.add.overlap(player, stars, collectStar2, null, this);
 
   this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
+
+// Game2.prototype.update = 
 
 function update() {
   wheel1.angle -= 0.5;
@@ -239,7 +254,7 @@ function update() {
   //   }
 }
 
-function collectStar(player, star) {
+function collectStar2(player, star) {
   star.disableBody(true, true);
 
   //  Add and update the score
@@ -252,20 +267,39 @@ function collectStar(player, star) {
       child.enableBody(true, child.x, 0, true, true);
     });
 
-    var x =
-      player.x < 400
-        ? Phaser.Math.Between(400, 800)
-        : Phaser.Math.Between(0, 400);
+    player.x < 400
+      ? Phaser.Math.Between(400, 800)
+      : Phaser.Math.Between(0, 400);
   }
 }
 
-  function hitWheel(player, wheel) {
-    this.physics.pause();
+function hitWheel(player) {
+  this.physics.pause();
 
-    player.setTint(0xff0000);
+  player.setTint(0xff0000);
 
-    player.anims.play("turn");
+  player.anims.play("turn");
 
-    gameOver = true;
-  }
+  $.get("/api/user_data", function(data) {
+    
+    var newScore = {
+      score: score,
+      UserId: data.id,
+      gameId: 2
+    }
 
+    console.log(newScore);
+    addScore2(newScore);
+  });
+
+
+  gameOver = true;
+}
+
+function addScore2(score) {
+  $.post("/api/scores", score, function() {
+    console.log("score added");
+  });
+}
+
+// new Game2(config2);

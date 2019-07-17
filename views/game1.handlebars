@@ -1,3 +1,5 @@
+<script src="/js/gameHTML.js"></script>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -8,10 +10,7 @@
   </div>
 </nav>
 
-
-<a href="/game1"><button id="game1">HTML Game</button></a>
-<a href="/game2"><button id="game2">CSS Game</button></a>
-
+<div id="gameHere1"></div>
 
 
 <div id="home">
@@ -31,6 +30,15 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form> --}}
+        <h3>High Scores:</h3>
+        <ul id="example-list" class="list-group">
+          {{#each example}}
+          <li data-id="{{UserId}}" class="list-group-item">
+            <a href="example/{{UserId}}">{{UserId}}</a>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
       </div>
     </div>
   </div>
@@ -38,5 +46,3 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
-
-
