@@ -71,6 +71,7 @@ function preload() {
   this.load.image("groundSmall", "assets/groundSmall.png");
   this.load.image("groundMedium", "assets/groundMedium.png");
   this.load.image("groundLarge", "assets/groundLarge.png");
+  this.load.image("bottom", "assets/bottom.png");
   this.load.image("star", "assets/css.png");
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
@@ -83,21 +84,17 @@ function preload() {
 // Game2.prototype.create = 
 
 function create() {
-  //  A simple background for our game
-  this.add.image(400, 300, "sky");
+  //background for our game
+  this.add.image(400, 304, "background");
 
-  //creates wheel
-  //   wheels = this.physics.add.sprite(400, 300, "wheel");
-
-  //   wheels.setCollideWorldBounds(true);
-
+  //creates wheel enemy
   wheels = this.physics.add.group();
 
-  wheel1 = wheels.create(410, 300, "wheel").setCollideWorldBounds(true);
-  wheel2 = wheels.create(30, 300, "wheel").setCollideWorldBounds(true);
-  wheel3 = wheels.create(600, 20, "wheel").setCollideWorldBounds(true);
-  wheel4 = wheels.create(310, 20, "wheel").setCollideWorldBounds(true);
-  wheel5 = wheels.create(30, 20, "wheel").setCollideWorldBounds(true);
+  wheel1 = wheels.create(352, 240, "wheel").setCollideWorldBounds(true);
+  wheel2 = wheels.create(528, 400, "wheel").setCollideWorldBounds(true);
+  wheel3 = wheels.create(560, 112, "wheel").setCollideWorldBounds(true);
+  wheel4 = wheels.create(16, 144, "wheel").setCollideWorldBounds(true);
+  wheel5 = wheels.create(16, 368, "wheel").setCollideWorldBounds(true);
 
   wheel1.angle = 45;
   wheel2.angle = 45;
@@ -105,9 +102,10 @@ function create() {
   wheel4.angle = 45;
   wheel5.angle = 45;
 
+  // wheel1 tween
   this.tweens.add({
-    targets: [wheel2, wheel5],
-    x: 200,
+    targets: wheel1,
+    x: 512,
     ease: "Sine.easeInOut",
     flipX: true,
     duration: 2000,
@@ -115,9 +113,10 @@ function create() {
     loop: -1
   });
 
+  // wheel2 and wheel3 tween
   this.tweens.add({
-    targets: [wheel1, wheel3],
-    x: 780,
+    targets: [wheel2, wheel3],
+    x: 784,
     ease: "Sine.easeInOut",
     flipX: true,
     duration: 2000,
@@ -125,15 +124,28 @@ function create() {
     loop: -1
   });
 
+  // wheel4 tween
   this.tweens.add({
     targets: wheel4,
-    x: 510,
+    x: 240,
     ease: "Sine.easeInOut",
     flipX: true,
     duration: 2000,
     yoyo: true,
     loop: -1
   });
+
+  // wheel5 tween
+  this.tweens.add({
+    targets: wheel5,
+    x: 272,
+    ease: "Sine.easeInOut",
+    flipX: true,
+    duration: 2000,
+    yoyo: true,
+    loop: -1
+  });
+ 
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
