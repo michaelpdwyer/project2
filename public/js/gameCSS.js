@@ -16,7 +16,7 @@
 
 var config2 = {
   type: Phaser.AUTO,
-  parent: "gameHere2",
+  parent: "gameHere",
   width: 800,
   height: 608,
   physics: {
@@ -297,6 +297,7 @@ function hitWheel(player) {
     addScore2(newScore);
   });
 
+  $('#gameOverScreen').show();
 
   gameOver = true;
 }

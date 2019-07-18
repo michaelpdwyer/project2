@@ -11,13 +11,12 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      db.Example.findAll({}).then(function(dbExamples) {
         res.render("index", {
           msg: "Welcome!",
-          examples: dbExamples
+          userName: req.user.userName
         });
       //res.redirect("/game");
-      });
+      
         return;
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
@@ -35,24 +34,13 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/game", isAuthenticated, function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        name: dbExamples
-      });
+    res.render("index", {
+      msg: "Welcome!",
+      userName: req.user.userName
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render("example", {
-        example: dbExample
-      });
-    });
-  });
+  
 
   // // Load example page and pass in an example by id
   // app.get("/score/:id", function(req, res) {

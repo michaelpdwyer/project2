@@ -1,6 +1,6 @@
 var config = {
   type: Phaser.AUTO,
-  parent: "gameHere1",
+  parent: "gameHere",
   width: 800,
   height: 608,
   physics: {
@@ -260,6 +260,8 @@ function hitBomb(player) {
     console.log(newScore);
     addScore1(newScore);
   });
+  
+  $('#gameOverScreen').show();
 
   gameOver = true;
 }
