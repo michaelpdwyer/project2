@@ -7,3 +7,24 @@ form.login {
   margin-top: 50px;
 }
 
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bold;
+  color: #087E8B;
+}
+
+h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bold;
+  color: #FF5A5F;
+}
+
+.inputs {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bolder;
+  color: #3C3C3C
+}
+
+input, p {
+  font-family: 'Open Sans', sans-serif;
+}
