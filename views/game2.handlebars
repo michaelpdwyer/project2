@@ -1,5 +1,5 @@
 <script src="/js/gameCSS.js"></script>
-<script src="/js/chatBackend.js"></script>
+{{!-- <script src="/js/chatBackend.js"></script> --}}
 
 
 <nav class="navbar navbar-default">
@@ -38,21 +38,21 @@
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form> --}}
         <h3>High Scores:</h3>
-        <ul id="example-list" class="list-group">
+        <ol id="example-list" class="list-group">
           {{#each game}}
-          <li data-id="{{UserId}}" class="list-group-item">
-            <div><strong>User ID: {{UserId}}</strong></div>
+          <li data-id="{{user}}" class="list-group-item">
+            <div><strong>User Name: {{user}}</strong></div>
             <div>Score: {{score}}</div>
           </li>
           {{/each}}
-        </ul>
+        </ol>
       </div>
     </div>
   </div>
 </div>
 
 {{!-- mini code ****************************** --}}
-<div id="div-container">
+{{!-- <div id="div-container">
 
    <div id= "container-box"class="container"> -->
       <div class="row">
@@ -71,7 +71,7 @@
          </div>
        </div>
    </div>
- </div>
+ </div> --}}
 
  {{!-- mini code ****************************** --}}
 

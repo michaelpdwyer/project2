@@ -54,11 +54,15 @@ module.exports = function(app) {
   app.get("/game1", function(req, res) {
     db.Game.findAll({
       where: { gameId: 1 },
-      order: ["score", 'DESC'],
       include: [db.User]
     }).then(function(dbGame) {
+      ordered = dbGame.map(item => {
+        return {user: item.User.userName, score:item.score}
+      }).sort((s1, s2) => {
+        return s2.score - s1.score
+      })
       res.render("game1", {
-        game: dbGame
+        game: ordered
       });
     });
   });
@@ -69,8 +73,13 @@ module.exports = function(app) {
       // order: 'score DESC',
       include: [db.User]
     }).then(function(dbGame) {
+      ordered = dbGame.map(item => {
+        return {user: item.User.userName, score:item.score}
+      }).sort((s1, s2) => {
+        return s2.score - s1.score
+      })
       res.render("game2", {
-        game: dbGame
+        game: ordered
       });
     });
   });
