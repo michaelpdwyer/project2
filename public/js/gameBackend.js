@@ -1,19 +1,3 @@
-// class gameCSS extends Phaser.Scene {
-//     constructor() {
-//         super({ key: "gameCSS" });
-//     }
-
-//     preload() {
-//         this.load.image("sky", "assets/sky.png");
-//         this.load.image("ground", "assets/platform.png");
-//         this.load.image("star", "assets/html.png");
-//         this.load.image("bomb", "assets/bomb.png");
-//         this.load.spritesheet("dude", "assets/dude.png", {
-//             frameWidth: 32,
-//             frameHeight: 48
-//         });
-//     }
-
 var config2 = {
   type: Phaser.AUTO,
   parent: "gameHere",
@@ -43,6 +27,10 @@ var gameOver = false;
 var scoreText;
 var score = 0;
 
+var jumpSound;
+var theme;
+var gameoverSound;
+var collectSound;
 
 var wheels;
 
@@ -54,18 +42,6 @@ var wheel5;
 
 new Phaser.Game(config2);
 
-// var spaceKey;
-// function Game2(config2) {
-//   Phaser.Game.call(this, config2);
-// }
-
-// Game2.prototype = Object.create(Phaser.Game.prototype);
-// Game2.prototype.constructor = Game2;
-
-
-
-// Game2.prototype.preload = 
-
 function preload() {
   this.load.image("background", "assets/background.jpg");
   this.load.image("groundSmall", "assets/groundSmall.png");
@@ -73,6 +49,12 @@ function preload() {
   this.load.image("groundLarge", "assets/groundLarge.png");
   this.load.image("bottom", "assets/bottom.png");
   this.load.image("star", "assets/css.png");
+
+  this.load.audio("theme", "assets/theme.mp3");
+  this.load.audio("jump", "assets/jump.mp3");
+  this.load.audio("gameover", "assets/gameover.mp3");
+  this.load.audio("collect", "assets/collect.mp3");
+
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
     frameHeight: 48
@@ -81,9 +63,17 @@ function preload() {
   this.load.image("wheel", "assets/wheelOfDeath.png");
 }
 
-// Game2.prototype.create = 
+
 
 function create() {
+
+  theme = this.sound.add("theme", { loop: "true", volume: 0.3 });
+  theme.play();
+
+  jumpSound = this.sound.add("jump");
+  gameoverSound = this.sound.add("gameover");
+  collectSound = this.sound.add("collect", {volume: 0.5});
+
   //background for our game
   this.add.image(400, 304, "background");
 
@@ -190,9 +180,15 @@ function create() {
 
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
-  //   spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+  
+  cursors = this.input.keyboard.addKeys({
+    up: Phaser.Input.Keyboard.KeyCodes.W,
+    down: Phaser.Input.Keyboard.KeyCodes.S,
+    left: Phaser.Input.Keyboard.KeyCodes.A,
+    right: Phaser.Input.Keyboard.KeyCodes.D
+  });
 
-  //  create stars, cages, and levers in designated places
+  //  create stars in designated places
 
   stars = this.physics.add.staticGroup();
   stars.create(432, 240, "star");
@@ -201,10 +197,6 @@ function create() {
   stars.create(128, 144, "star");
   stars.create(144, 368, "star");
 
-  //   stars.children.iterate(function(child) {
-  //     //  Give each star a slightly different bounce
-  //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-  //   });
 
   //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
@@ -252,14 +244,14 @@ function update() {
 
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
+
+    jumpSound.play();
   }
 
-  //   if (this.spaceKey.isDown) {
-  //     activateLever();
-  //   }
 }
 
 function collectStar2(player, star) {
+  collectSound.play();
   star.disableBody(true, true);
 
   //  Add and update the score
@@ -280,6 +272,8 @@ function collectStar2(player, star) {
 
 function hitWheel(player) {
   this.physics.pause();
+  gameoverSound.play();
+  theme.pause();
 
   player.setTint(0xff0000);
 
@@ -308,4 +302,4 @@ function addScore2(score) {
   });
 }
 
-// new Game2(config2);
+

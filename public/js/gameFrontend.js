@@ -54,6 +54,7 @@ function preload() {
   this.load.image("cage", "assets/cage.png");
   this.load.image("bomb", "assets/bug.png");
   this.load.image("bullet", "assets/JSbullet.png");
+
   this.load.audio("theme", "assets/theme.mp3");
   this.load.audio("shot", "assets/shot.mp3");
   this.load.audio("jump", "assets/jump.mp3");
@@ -133,7 +134,7 @@ function create() {
   });
   //   spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-  //  create stars, cages, and levers in designated places
+  //  create stars and cages in designated places
 
   stars = this.physics.add.staticGroup();
   stars.create(432, 240, "star1");
@@ -149,17 +150,7 @@ function create() {
   cages.create(128, 144, "cage");
   cages.create(144, 368, "cage");
 
-  //   levers = this.physics.add.staticGroup();
-  //   levers.create(48, 85, "lever");
-  //   levers.create(48, 325, "lever");
-  //   levers.create(752, 115, "lever");
-  //   levers.create(752, 425, "lever");
-  //   levers.create(431, 233, "lever");
-
-  //   stars.children.iterate(function(child) {
-  //     //  Give each star a slightly different bounce
-  //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-  //   });
+  
 
   bombs = this.physics.add.group();
   bullets = this.physics.add.group();
@@ -225,23 +216,11 @@ function update() {
     );
     this.physics.moveTo(bullet, this.input.x, this.input.y, null, 750);
 
-    //bullet.setCollideWorldBounds(true);
+    
   }
 
-  //   if (this.spaceKey.isDown) {
-  //     activateLever();
-  //   }
-
-  //   bullets.children.each(
-  //     function(b) {
-  //       if (b.active) {
-  //         if (b.y < 0) {
-  //           b.setActive(false);
-  //         }
-  //       }
-  //     }.bind(this)
-  //   );
 }
+
 function collectStar(player, star) {
   collectSound.play();
   star.disableBody(true, true);
@@ -274,11 +253,7 @@ function collectStar(player, star) {
   }
 }
 
-// function activateLever(player, lever, cages) {
-//   cages.destroy();
 
-//   console.log("at lever");
-// }
 
 function hitBomb(player) {
   this.physics.pause();
