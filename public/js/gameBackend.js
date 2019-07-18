@@ -1,24 +1,8 @@
-// class gameCSS extends Phaser.Scene {
-//     constructor() {
-//         super({ key: "gameCSS" });
-//     }
-
-//     preload() {
-//         this.load.image("sky", "assets/sky.png");
-//         this.load.image("ground", "assets/platform.png");
-//         this.load.image("star", "assets/html.png");
-//         this.load.image("bomb", "assets/bomb.png");
-//         this.load.spritesheet("dude", "assets/dude.png", {
-//             frameWidth: 32,
-//             frameHeight: 48
-//         });
-//     }
-
 var config2 = {
   type: Phaser.AUTO,
-  parent: "gameHere2",
+  parent: "gameHere",
   width: 800,
-  height: 600,
+  height: 608,
   physics: {
     default: "arcade",
     arcade: {
@@ -43,6 +27,10 @@ var gameOver = false;
 var scoreText;
 var score = 0;
 
+var jumpSound;
+var theme;
+var gameoverSound;
+var collectSound;
 
 var wheels;
 
@@ -54,22 +42,24 @@ var wheel5;
 
 new Phaser.Game(config2);
 
-// var spaceKey;
-// function Game2(config2) {
-//   Phaser.Game.call(this, config2);
-// }
-
-// Game2.prototype = Object.create(Phaser.Game.prototype);
-// Game2.prototype.constructor = Game2;
-
-
-
-// Game2.prototype.preload = 
-
 function preload() {
-  this.load.image("sky", "assets/sky.png");
-  this.load.image("ground", "assets/platform.png");
-  this.load.image("star", "assets/css.png");
+  this.load.image("background", "assets/background.jpg");
+  this.load.image("groundSmall", "assets/groundSmall.png");
+  this.load.image("groundMedium", "assets/groundMedium.png");
+  this.load.image("groundLarge", "assets/groundLarge.png");
+  this.load.image("bottom", "assets/bottom.png");
+
+  this.load.image("star1", "assets/nodejs.png");
+  this.load.image("star2", "assets/mysql.png");
+  this.load.image("star3", "assets/mongodb.png");
+  this.load.image("star4", "assets/heroku.png");
+  this.load.image("star5", "assets/firebase.png");
+
+  this.load.audio("theme", "assets/theme.mp3");
+  this.load.audio("jump", "assets/jump.mp3");
+  this.load.audio("gameover", "assets/gameover.mp3");
+  this.load.audio("collect", "assets/collect.mp3");
+
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
     frameHeight: 48
@@ -78,24 +68,25 @@ function preload() {
   this.load.image("wheel", "assets/wheelOfDeath.png");
 }
 
-// Game2.prototype.create = 
-
 function create() {
-  //  A simple background for our game
-  this.add.image(400, 300, "sky");
+  theme = this.sound.add("theme", { loop: "true", volume: 0.3 });
+  theme.play();
 
-  //creates wheel
-  //   wheels = this.physics.add.sprite(400, 300, "wheel");
+  jumpSound = this.sound.add("jump");
+  gameoverSound = this.sound.add("gameover");
+  collectSound = this.sound.add("collect", { volume: 0.5 });
 
-  //   wheels.setCollideWorldBounds(true);
+  //background for our game
+  this.add.image(400, 304, "background");
 
+  //creates wheel enemy
   wheels = this.physics.add.group();
 
-  wheel1 = wheels.create(410, 300, "wheel").setCollideWorldBounds(true);
-  wheel2 = wheels.create(30, 300, "wheel").setCollideWorldBounds(true);
-  wheel3 = wheels.create(600, 20, "wheel").setCollideWorldBounds(true);
-  wheel4 = wheels.create(310, 20, "wheel").setCollideWorldBounds(true);
-  wheel5 = wheels.create(30, 20, "wheel").setCollideWorldBounds(true);
+  wheel1 = wheels.create(352, 240, "wheel").setCollideWorldBounds(true);
+  wheel2 = wheels.create(528, 400, "wheel").setCollideWorldBounds(true);
+  wheel3 = wheels.create(560, 112, "wheel").setCollideWorldBounds(true);
+  wheel4 = wheels.create(16, 144, "wheel").setCollideWorldBounds(true);
+  wheel5 = wheels.create(16, 368, "wheel").setCollideWorldBounds(true);
 
   wheel1.angle = 45;
   wheel2.angle = 45;
@@ -103,9 +94,10 @@ function create() {
   wheel4.angle = 45;
   wheel5.angle = 45;
 
+  // wheel1 tween
   this.tweens.add({
-    targets: [wheel2, wheel5],
-    x: 200,
+    targets: wheel1,
+    x: 512,
     ease: "Sine.easeInOut",
     flipX: true,
     duration: 2000,
@@ -113,9 +105,10 @@ function create() {
     loop: -1
   });
 
+  // wheel2 and wheel3 tween
   this.tweens.add({
-    targets: [wheel1, wheel3],
-    x: 780,
+    targets: [wheel2, wheel3],
+    x: 784,
     ease: "Sine.easeInOut",
     flipX: true,
     duration: 2000,
@@ -123,9 +116,21 @@ function create() {
     loop: -1
   });
 
+  // wheel4 tween
   this.tweens.add({
     targets: wheel4,
-    x: 510,
+    x: 240,
+    ease: "Sine.easeInOut",
+    flipX: true,
+    duration: 2000,
+    yoyo: true,
+    loop: -1
+  });
+
+  // wheel5 tween
+  this.tweens.add({
+    targets: wheel5,
+    x: 272,
     ease: "Sine.easeInOut",
     flipX: true,
     duration: 2000,
@@ -137,23 +142,14 @@ function create() {
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
-  //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-  platforms
-    .create(400, 568, "ground")
-    .setScale(2)
-    .refreshBody();
+  platforms.create(400, 576, "bottom");
 
-  platforms
-    .create(400, 250, "ground")
-    .setScale(0.5)
-    .refreshBody();
-
-  //  Now let's create some ledges
-  platforms.create(600, 450, "ground");
-  platforms.create(50, 350, "ground");
-  platforms.create(750, 800, "ground");
-  platforms.create(780, 140, "ground");
-  platforms.create(40, 110, "ground");
+  //ledges
+  platforms.create(432, 272, "groundSmall");
+  platforms.create(656, 432, "groundLarge");
+  platforms.create(672, 144, "groundMedium");
+  platforms.create(128, 176, "groundMedium");
+  platforms.create(144, 400, "groundLarge");
 
   // The player and its settings
   player = this.physics.add.sprite(100, 450, "dude");
@@ -185,21 +181,22 @@ function create() {
 
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
-  //   spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-  //  create stars, cages, and levers in designated places
+  cursors = this.input.keyboard.addKeys({
+    up: Phaser.Input.Keyboard.KeyCodes.W,
+    down: Phaser.Input.Keyboard.KeyCodes.S,
+    left: Phaser.Input.Keyboard.KeyCodes.A,
+    right: Phaser.Input.Keyboard.KeyCodes.D
+  });
+
+  //  create stars in designated places
 
   stars = this.physics.add.staticGroup();
-  stars.create(12, 82, "star");
-  stars.create(12, 322, "star");
-  stars.create(788, 112, "star");
-  stars.create(788, 422, "star");
-  stars.create(395, 230, "star");
-
-  //   stars.children.iterate(function(child) {
-  //     //  Give each star a slightly different bounce
-  //     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-  //   });
+  stars.create(432, 240, "star1");
+  stars.create(656, 400, "star2");
+  stars.create(672, 112, "star3");
+  stars.create(128, 144, "star4");
+  stars.create(144, 368, "star5");
 
   //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
@@ -218,7 +215,7 @@ function create() {
   this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
-// Game2.prototype.update = 
+// Game2.prototype.update =
 
 function update() {
   wheel1.angle -= 0.5;
@@ -247,14 +244,13 @@ function update() {
 
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
-  }
 
-  //   if (this.spaceKey.isDown) {
-  //     activateLever();
-  //   }
+    jumpSound.play();
+  }
 }
 
 function collectStar2(player, star) {
+  collectSound.play();
   star.disableBody(true, true);
 
   //  Add and update the score
@@ -275,23 +271,25 @@ function collectStar2(player, star) {
 
 function hitWheel(player) {
   this.physics.pause();
+  gameoverSound.play();
+  theme.pause();
 
   player.setTint(0xff0000);
 
   player.anims.play("turn");
 
   $.get("/api/user_data", function(data) {
-    
     var newScore = {
       score: score,
       UserId: data.id,
       gameId: 2
-    }
+    };
 
     console.log(newScore);
     addScore2(newScore);
   });
 
+  $("#gameOverScreen").show();
 
   gameOver = true;
 }
@@ -301,5 +299,3 @@ function addScore2(score) {
     console.log("score added");
   });
 }
-
-// new Game2(config2);

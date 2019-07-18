@@ -3,7 +3,7 @@
     "username": "root",
 
     "password": "Flipper1",
-    "database": "exampledb",
+    "database": "AOLdb",
     "host": "127.0.0.1",
 
     "dialect": "mysql"

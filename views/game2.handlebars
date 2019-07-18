@@ -1,4 +1,5 @@
-<script src="/js/gameCSS.js"></script>
+<script src="/js/gameBackend.js"></script>
+{{!-- <script src="/js/chatBackend.js"></script> --}}
 
 
 <nav class="navbar navbar-default">
@@ -12,7 +13,12 @@
 </nav>
 
 
-  <div id="gameHere2"></div>
+  <div id="gameHere">
+  <div id="gameOverScreen">
+      <a href="/game2"><button>Play Game Again</button></a>
+      <a href="/game"><button>Select New Game</button></a>
+  </div>
+  </div>
 
 <div id="home">
   <div class="container">
@@ -32,18 +38,42 @@
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form> --}}
         <h3>High Scores:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each example}}
-          <li data-id="{{UserId}}" class="list-group-item">
-            <a href="example/{{UserId}}">{{UserId}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+        <ol id="example-list" class="list-group">
+          {{#each game}}
+          <li data-id="{{user}}" class="list-group-item">
+            <div><strong>User Name: {{user}}</strong></div>
+            <div>Score: {{score}}</div>
           </li>
           {{/each}}
-        </ul>
+        </ol>
       </div>
     </div>
   </div>
 </div>
+
+{{!-- mini code ****************************** --}}
+{{!-- <div id="div-container">
+
+   <div id= "container-box"class="container"> -->
+      <div class="row">
+       <ul id="messages"></ul>
+     </div>
+     <div class="row">
+         <div class="col-lg-6">
+           <form action="">
+             <div class="input-group">
+                 <input id="m" autocomplete="off" type="text" class="form-control" placeholder="Message..." aria-label="Message...">
+                 <span class="input-group-btn">
+                   <button class="btn btn-secondary" type="submit">Send</button>
+                 </span>
+               </div>
+           </form>
+         </div>
+       </div>
+   </div>
+ </div> --}}
+
+ {{!-- mini code ****************************** --}}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>

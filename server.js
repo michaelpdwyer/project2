@@ -8,7 +8,16 @@ var passport = require("./config/passport");
 var db = require("./models");
 
 var app = express();
+
 var PORT = process.env.PORT || 3000;
+
+// //app.set('port', PORT);
+// var http = require('http');
+
+// var server = http.createServer(app);
+// var io = require('socket.io').listen(server);
+// server.listen(8085);
+// var {Translate} = require('@google-cloud/translate');
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -42,6 +51,37 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+
+// //MINI CODE ***************************************************
+// // tech namespace
+// // var tech = io.of('/tech');
+
+// io.sockets.on('connection', (socket) => {
+//    socket.on('join', (data) => {
+//        socket.join(data.room);
+//        tech.in(data.room).emit('message', `New user joined ${data.room} room!`);
+//    })
+
+//    socket.on('message', (data) => {
+//        console.log(`message: ${data.msg}`);
+//        var translate = new Translate({projectId:'focus-nucleus-240701'});
+//          var text = data.msg;
+//          var target = 'am';
+//          translate
+//          .translate(text, target)
+//          .then(results => {
+//              console.log(results[0]);
+//              tech.in(data.room).emit('message', results[0]);
+//             }).catch(err => {console.error('ERROR:', err);});
+//            });
+
+//    socket.on('disconnect', () => {
+//        console.log('user disconnected');
+
+//        tech.emit('message', 'user disconnected');
+//    })
+// })
+// //MINI CODE ***************************************************
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
