@@ -28,10 +28,15 @@ var gameOver = false;
 var scoreText;
 var bullets;
 
-
+var jumpSound;
+var theme;
+var shotSound;
+var gameoverSound;
+var collectSound;
+var cageBreakSound;
+var newBugSound;
 
 new Phaser.Game(config);
-
 
 function preload() {
   this.load.image("background", "assets/background.jpg");
@@ -43,14 +48,30 @@ function preload() {
   this.load.image("cage", "assets/cage.png");
   this.load.image("bomb", "assets/bug.png");
   this.load.image("bullet", "assets/JSbullet.png");
+  this.load.audio("theme", "assets/theme.mp3");
+  this.load.audio("shot", "assets/shot.mp3");
+  this.load.audio("jump", "assets/jump.mp3");
+  this.load.audio("gameover", "assets/gameover.mp3");
+  this.load.audio("collect", "assets/collect.mp3");
+  this.load.audio("cageBreak", "assets/cageBreak.mp3");
+  this.load.audio("newBug", "assets/newBug.mp3");
   this.load.spritesheet("dude", "assets/dude.png", {
     frameWidth: 32,
     frameHeight: 48
   });
-};
-
+}
 
 function create() {
+  theme = this.sound.add("theme", { loop: "true", volume: 0.3 });
+  theme.play();
+
+  jumpSound = this.sound.add("jump");
+  shotSound = this.sound.add("shot", {volume: 0.5});
+  gameoverSound = this.sound.add("gameover");
+  collectSound = this.sound.add("collect", {volume: 0.5});
+  cageBreakSound = this.sound.add("cageBreak");
+  newBugSound = this.sound.add("newBug");
+
   //  background for our game
   this.add.image(400, 304, "background");
 
@@ -97,6 +118,13 @@ function create() {
 
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
+
+  cursors = this.input.keyboard.addKeys({
+    up: Phaser.Input.Keyboard.KeyCodes.W,
+    down: Phaser.Input.Keyboard.KeyCodes.S,
+    left: Phaser.Input.Keyboard.KeyCodes.A,
+    right: Phaser.Input.Keyboard.KeyCodes.D
+  });
   //   spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
   //  create stars, cages, and levers in designated places
@@ -152,9 +180,9 @@ function create() {
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
   this.physics.add.collider(bullets, cages, breakCage, null, this);
-};
+}
 
-// Game1.prototype.update = 
+// Game1.prototype.update =
 
 function update() {
   if (gameOver) {
@@ -177,9 +205,12 @@ function update() {
 
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
+
+    jumpSound.play();
   }
 
   if (this.input.activePointer.isDown) {
+    shotSound.play();
     var bullet = bullets.getFirstDead(
       true,
       player.x - 8,
@@ -204,8 +235,9 @@ function update() {
   //       }
   //     }.bind(this)
   //   );
-};
+}
 function collectStar(player, star) {
+  collectSound.play();
   star.disableBody(true, true);
 
   //  Add and update the score
@@ -218,7 +250,6 @@ function collectStar(player, star) {
       child.enableBody(true, child.x, child.y, true, true);
     });
 
-    
     cages.children.iterate(function(child) {
       child.enableBody(true, child.x, child.y, true, true);
     });
@@ -233,6 +264,7 @@ function collectStar(player, star) {
     bomb.setCollideWorldBounds(true);
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
     bomb.allowGravity = false;
+    newBugSound.play();
   }
 }
 
@@ -244,24 +276,25 @@ function collectStar(player, star) {
 
 function hitBomb(player) {
   this.physics.pause();
+  gameoverSound.play();
+  theme.pause();
 
   player.setTint(0xff0000);
 
   player.anims.play("turn");
 
   $.get("/api/user_data", function(data) {
-    
     var newScore = {
       score: score,
       UserId: data.id,
       gameId: 1
-    }
+    };
 
     console.log(newScore);
     addScore1(newScore);
   });
-  
-  $('#gameOverScreen').show();
+
+  $("#gameOverScreen").show();
 
   gameOver = true;
 }
@@ -273,27 +306,8 @@ function addScore1(score) {
 }
 
 function breakCage(bullet, cage) {
+  cageBreakSound.play();
   cage.disableBody(true, true);
 }
-
-// function removeBullet(bullet) {}
-
-// function shoot(pointer) {
-//   var bullet = this.bullets.get(pointer.x, pointer.y);
-//   if (bullet) {
-//     bullet.setActive(true);
-//     bullet.setVisible(true);
-//     bullet.body.velocity.y = -200;
-//   }
-// }
-
-
-
-
-
-
-
-//  new Game1(config);
-
 
 
