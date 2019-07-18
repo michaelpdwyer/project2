@@ -44,7 +44,13 @@ function preload() {
   this.load.image("groundMedium", "assets/groundMedium.png");
   this.load.image("groundLarge", "assets/groundLarge.png");
   this.load.image("bottom", "assets/bottom.png");
-  this.load.image("star", "assets/html.png");
+
+  this.load.image("star1", "assets/html.png");
+  this.load.image("star2", "assets/css.png");
+  this.load.image("star3", "assets/javascript.png");
+  this.load.image("star4", "assets/jquery.png");
+  this.load.image("star5", "assets/bootstrap.png");
+
   this.load.image("cage", "assets/cage.png");
   this.load.image("bomb", "assets/bug.png");
   this.load.image("bullet", "assets/JSbullet.png");
@@ -130,11 +136,11 @@ function create() {
   //  create stars, cages, and levers in designated places
 
   stars = this.physics.add.staticGroup();
-  stars.create(432, 240, "star");
-  stars.create(656, 400, "star");
-  stars.create(672, 112, "star");
-  stars.create(128, 144, "star");
-  stars.create(144, 368, "star");
+  stars.create(432, 240, "star1");
+  stars.create(656, 400, "star2");
+  stars.create(672, 112, "star3");
+  stars.create(128, 144, "star4");
+  stars.create(144, 368, "star5");
 
   cages = this.physics.add.staticGroup();
   cages.create(432, 240, "cage");
