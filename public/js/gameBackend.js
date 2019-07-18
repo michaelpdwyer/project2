@@ -48,7 +48,12 @@ function preload() {
   this.load.image("groundMedium", "assets/groundMedium.png");
   this.load.image("groundLarge", "assets/groundLarge.png");
   this.load.image("bottom", "assets/bottom.png");
-  this.load.image("star", "assets/css.png");
+
+  this.load.image("star1", "assets/nodejs.png");
+  this.load.image("star2", "assets/mysql.png");
+  this.load.image("star3", "assets/mongodb.png");
+  this.load.image("star4", "assets/heroku.png");
+  this.load.image("star5", "assets/firebase.png");
 
   this.load.audio("theme", "assets/theme.mp3");
   this.load.audio("jump", "assets/jump.mp3");
@@ -191,11 +196,11 @@ function create() {
   //  create stars in designated places
 
   stars = this.physics.add.staticGroup();
-  stars.create(432, 240, "star");
-  stars.create(656, 400, "star");
-  stars.create(672, 112, "star");
-  stars.create(128, 144, "star");
-  stars.create(144, 368, "star");
+  stars.create(432, 240, "star1");
+  stars.create(656, 400, "star2");
+  stars.create(672, 112, "star3");
+  stars.create(128, 144, "star4");
+  stars.create(144, 368, "star5");
 
 
   //  The score

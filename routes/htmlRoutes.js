@@ -9,7 +9,7 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    // If the user already has an account send them to the members page
+    // If the user already has an account send them to the game page
     if (req.user) {
       res.render("index", {
         msg: "Welcome!",
