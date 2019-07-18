@@ -11,13 +11,13 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-        res.render("index", {
-          msg: "Welcome!",
-          userName: req.user.userName
-        });
+      res.render("index", {
+        msg: "Welcome!",
+        userName: req.user.userName
+      });
       //res.redirect("/game");
-      
-        return;
+
+      return;
     }
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
@@ -40,8 +40,6 @@ module.exports = function(app) {
     });
   });
 
-  
-
   // // Load example page and pass in an example by id
   // app.get("/score/:id", function(req, res) {
   //   db.Game.findAll({ where: { gameId: req.params.id } }).then(function(
@@ -54,25 +52,28 @@ module.exports = function(app) {
   // });
 
   app.get("/game1", function(req, res) {
-    db.Game.findAll({ where: { gameId: 1 } }).then(function(
-      dbExample
-    ) {
+    db.Game.findAll({
+      where: { gameId: 1 },
+      order: ["score", 'DESC'],
+      include: [db.User]
+    }).then(function(dbGame) {
       res.render("game1", {
-        example: dbExample
+        game: dbGame
       });
     });
   });
 
   app.get("/game2", function(req, res) {
-    db.Game.findAll({ where: { gameId: 2 } }).then(function(
-      dbExample
-    ) {
+    db.Game.findAll({
+      where: { gameId: 2 },
+      // order: 'score DESC',
+      include: [db.User]
+    }).then(function(dbGame) {
       res.render("game2", {
-        example: dbExample
+        game: dbGame
       });
     });
   });
-
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {

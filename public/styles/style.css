@@ -24,3 +24,19 @@ form.login {
 #gameHere {
   position: relative;
 }
+
+/* mini code ******************* */
+#div-container{
+  width: 600px;
+  position: fixed;
+  height: 50%;
+  right: 0px;
+  bottom: 0px;
+  padding-bottom: 30px;
+  padding-bottom: 10px;
+  border: 10px solid rgba(84, 29, 91, 0.3);
+    }
+    form { padding: 10px; position: fixed; bottom: 0;bottom: 500px, width: 50%; padding-right: 50px;}
+    #messages { list-style-type: none; margin: 0; padding-right: 5px; padding-left: 5px;width: 90%;}
+    #messages li { padding: 5px ;right: 5px }
+    #messages li:nth-child(odd) { background: rgba(255, 192, 203, 0.383);}

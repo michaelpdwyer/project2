@@ -7,7 +7,7 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-  
+
   // Create a new example
   app.post("/api/examples", function(req, res) {
     db.Example.create(req.body).then(function(dbExample) {
@@ -15,8 +15,7 @@ module.exports = function(app) {
     });
   });
 
-
-// Using the passport.authenticate middleware with our local strategy.
+  // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
@@ -69,12 +68,9 @@ module.exports = function(app) {
 
   app.get("/api/scores/:id", function(req, res) {
     db.Game.findAll({
-       where: { gameId: req.params.id } 
+      where: { gameId: req.params.id }
     }).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
-
-
-
 };
