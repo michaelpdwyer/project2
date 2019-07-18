@@ -51,7 +51,7 @@ module.exports = function(app) {
   //   });
   // });
 
-  app.get("/game1", function(req, res) {
+  app.get("/game1", isAuthenticated, function(req, res) {
     db.Game.findAll({
       where: { gameId: 1 },
       include: [db.User]
@@ -67,7 +67,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/game2", function(req, res) {
+  app.get("/game2", isAuthenticated, function(req, res) {
     db.Game.findAll({
       where: { gameId: 2 },
       // order: 'score DESC',
