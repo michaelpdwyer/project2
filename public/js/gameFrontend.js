@@ -73,9 +73,9 @@ function create() {
   theme.play();
 
   jumpSound = this.sound.add("jump");
-  shotSound = this.sound.add("shot", {volume: 0.5});
+  shotSound = this.sound.add("shot", { volume: 0.5 });
   gameoverSound = this.sound.add("gameover");
-  collectSound = this.sound.add("collect", {volume: 0.5});
+  collectSound = this.sound.add("collect", { volume: 0.5 });
   cageBreakSound = this.sound.add("cageBreak");
   newBugSound = this.sound.add("newBug");
 
@@ -150,8 +150,6 @@ function create() {
   cages.create(128, 144, "cage");
   cages.create(144, 368, "cage");
 
-  
-
   bombs = this.physics.add.group();
   bullets = this.physics.add.group();
 
@@ -215,10 +213,7 @@ function update() {
       "bullet"
     );
     this.physics.moveTo(bullet, this.input.x, this.input.y, null, 750);
-
-    
   }
-
 }
 
 function collectStar(player, star) {
@@ -252,8 +247,6 @@ function collectStar(player, star) {
     newBugSound.play();
   }
 }
-
-
 
 function hitBomb(player) {
   this.physics.pause();
@@ -290,5 +283,3 @@ function breakCage(bullet, cage) {
   cageBreakSound.play();
   cage.disableBody(true, true);
 }
-
-

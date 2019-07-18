@@ -68,16 +68,13 @@ function preload() {
   this.load.image("wheel", "assets/wheelOfDeath.png");
 }
 
-
-
 function create() {
-
   theme = this.sound.add("theme", { loop: "true", volume: 0.3 });
   theme.play();
 
   jumpSound = this.sound.add("jump");
   gameoverSound = this.sound.add("gameover");
-  collectSound = this.sound.add("collect", {volume: 0.5});
+  collectSound = this.sound.add("collect", { volume: 0.5 });
 
   //background for our game
   this.add.image(400, 304, "background");
@@ -140,7 +137,6 @@ function create() {
     yoyo: true,
     loop: -1
   });
- 
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
@@ -185,7 +181,7 @@ function create() {
 
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
-  
+
   cursors = this.input.keyboard.addKeys({
     up: Phaser.Input.Keyboard.KeyCodes.W,
     down: Phaser.Input.Keyboard.KeyCodes.S,
@@ -201,7 +197,6 @@ function create() {
   stars.create(672, 112, "star3");
   stars.create(128, 144, "star4");
   stars.create(144, 368, "star5");
-
 
   //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
@@ -220,7 +215,7 @@ function create() {
   this.physics.add.collider(player, wheels, hitWheel, null, this);
 }
 
-// Game2.prototype.update = 
+// Game2.prototype.update =
 
 function update() {
   wheel1.angle -= 0.5;
@@ -252,7 +247,6 @@ function update() {
 
     jumpSound.play();
   }
-
 }
 
 function collectStar2(player, star) {
@@ -285,18 +279,17 @@ function hitWheel(player) {
   player.anims.play("turn");
 
   $.get("/api/user_data", function(data) {
-    
     var newScore = {
       score: score,
       UserId: data.id,
       gameId: 2
-    }
+    };
 
     console.log(newScore);
     addScore2(newScore);
   });
 
-  $('#gameOverScreen').show();
+  $("#gameOverScreen").show();
 
   gameOver = true;
 }
@@ -306,5 +299,3 @@ function addScore2(score) {
     console.log("score added");
   });
 }
-
-

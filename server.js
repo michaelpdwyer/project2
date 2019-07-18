@@ -19,10 +19,6 @@ var PORT = process.env.PORT || 3000;
 // server.listen(8085);
 // var {Translate} = require('@google-cloud/translate');
 
-
-
-
-
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -55,8 +51,6 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
-
-
 
 // //MINI CODE ***************************************************
 // // tech namespace

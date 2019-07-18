@@ -32,14 +32,14 @@ $(document).ready(function() {
       email: email,
       password: password
     })
-      .then(function(data) {
+      .then(function() {
         window.location.replace("/game");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
   }
 
-  function handleLoginErr(err) {
+  function handleLoginErr() {
     $("#alert .msg").text(
       "Sorry that account already exists, please try logging in."
     );
