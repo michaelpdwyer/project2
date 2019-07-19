@@ -5,25 +5,23 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/logout">
-        Logout
+        <p style="font-family: 'Press Start 2P', cursive;" class="animated bounceInRight slow">Logout</p>
       </a>
     </div>
   </div>
 </nav>
 
 <div id="gameHere">
-    <div id="gameOverScreen">
-      <a href="/game1"><button>Play Game Again</button></a>
-      <a href="/game"><button>Select New Game</button></a>
+  <div id="gameOverScreen">
+    <a href="/game1"><button class="buttonColor buttonText">Play Again!</button></a>
+    <a href="/game"><button class="buttonColor buttonText">Try Other Game!</button></a>
   </div>
 </div>
-
 
 <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        
         <h3>High Scores:</h3>
         <ol id="example-list" class="list-group">
           {{#each game}}
@@ -61,5 +59,4 @@
 
  {{!-- mini code ****************************** --}}
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+{{!-- mini code ****************************** --}}
