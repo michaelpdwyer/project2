@@ -1,7 +1,6 @@
 {
   "development": {
     "username": "root",
-
     "password": "Flipper1",
     "database": "AOLdb",
     "host": "127.0.0.1",
@@ -16,10 +15,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "Password123",
-    "database": "users_db",
-    "host": "127.0.0.1",
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
 }
