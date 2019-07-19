@@ -7,6 +7,23 @@ form.login {
   margin-top: 50px;
 }
 
+#gameOverScreen {
+  display: none;
+  text-align: center;
+  background:lightgrey;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  opacity: .8;
+ }
+ 
+ #gameHere {
+  position: relative;
+ }
+
 h1 {
   font-family: 'Press Start 2P', cursive;
   font-weight: bold;
@@ -19,6 +36,12 @@ h2 {
   color: #FF5A5F;
 }
 
+h3 {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bold;
+  color: #087E8B;
+}
+
 .inputs {
   font-family: 'Press Start 2P', cursive;
   font-weight: bolder;
@@ -27,4 +50,25 @@ h2 {
 
 input, p {
   font-family: 'Open Sans', sans-serif;
+}
+
+.buttonColor {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #087E8B;
+}
+
+.userButtonColor {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #FF5A5F;
+}
+
+.userButtonText {
+  font-family: 'Press Start 2P', cursive;
+  color: whitesmoke;
+}
+
+.buttonText {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bolder;
+  color: #3C3C3C
 }

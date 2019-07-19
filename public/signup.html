@@ -15,7 +15,7 @@
 <body>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <h1 class="animated bounceInRight">Blocker Buster</h1>
+      <h1 class="animated bounceInRight slow">Blocker Buster</h1>
       <div class="navbar-header">
       </div>
     </div>
@@ -23,29 +23,25 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h2 class="animated rubberBand delay-5s infinite slow">Sign up to play!</h2>
+        <h2 class="animated rubberBand delay-4s infinite slow">Sign up to play!</h2>
         <form class="signup">
           <div class="form-group">
-            <label for="exampleInputFirstName1" class="inputs animated bounceInLeft delay-1s">First name</label>
-            <input type="text" class="form-control" id="firstName-input" placeholder="First name">
+            <label for="exampleInputUsername" class="inputs animated bounceInLeft delay-1s">Username</label>
+            <input type="text" class="form-control" id="userName-input" placeholder="Username">
           </div>
           <div class="form-group">
-            <label for="exampleInputLastName1" class="inputs animated bounceInRight delay-2s">Last name</label>
-            <input type="text" class="form-control" id="lastName-input" placeholder="Last name">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1" class="inputs animated bounceInLeft delay-3s">Email address</label>
+            <label for="exampleInputEmail1" class="inputs animated bounceInRight delay-2s">Email</label>
             <input type="email" class="form-control" id="email-input" placeholder="Email">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1" class="inputs animated bounceInRight delay-4s">Password</label>
+            <label for="exampleInputPassword1" class="inputs animated bounceInLeft delay-3s">Password</label>
             <input type="password" class="form-control" id="password-input" placeholder="Password">
           </div>
           <div style="display: none" id="alert" class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-default animated zoomIn slow">Sign Up</button>
+          <button type="submit" class="btn btn-default buttonColor buttonText animated zoomIn slow">Sign Up</button>
         </form>
         <br />
         <p class="animated zoomIn slow">...or log in <a href="/login">here</a>!</p>
@@ -55,9 +51,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
-
-
-
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->

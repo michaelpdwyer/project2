@@ -2,17 +2,17 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/logout">
-        Logout
+        <p style="font-family: 'Press Start 2P', cursive;" class="animated bounceInRight slow">Logout</p>
       </a>
     </div>
   </div>
 </nav>
 
-
-<a href="/game1"><button id="game1">HTML Game</button></a>
-<a href="/game2"><button id="game2">CSS Game</button></a>
-
-
+<div>
+  <h3><strong>{{msg}} {{userName}}!</strong></h3>
+</div><br>
+<a href="/game1"><button id="game1" class="userButtonColor userButtonText">Front-End Game</button></a>
+<a href="/game2"><button id="game2" class="userButtonColor userButtonText">Back-End Game</button></a>
 
 <div id="home">
   <div class="container">
@@ -37,6 +37,3 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-
-

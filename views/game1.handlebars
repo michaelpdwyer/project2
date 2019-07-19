@@ -1,48 +1,65 @@
-<script src="/js/gameHTML.js"></script>
+<script src="/js/gameFrontend.js"></script>
+{{!-- <script src="/js/chatFrontend.js"></script> --}}
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/logout">
-        Logout
+        <p style="font-family: 'Press Start 2P', cursive;" class="animated bounceInRight slow">Logout</p>
       </a>
     </div>
   </div>
 </nav>
 
-<div id="gameHere1"></div>
-
+<div id="gameHere">
+  <div id="gameOverScreen">
+    <a href="/game1"><button class="buttonColor buttonText">Play Again!</button></a>
+    <a href="/game"><button class="buttonColor buttonText">Try Other Game!</button></a>
+  </div>
+</div>
 
 <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        {{!-- <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form> --}}
+
         <h3>High Scores:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each example}}
-          <li data-id="{{UserId}}" class="list-group-item">
-            <div><strong>User ID: {{UserId}}</strong></div>
-            <div>Score: {{score}}</div>
+        <ol id="example-list" class="list-group">
+          {{#each game}}
+          <li data-id="{{user}}" class="list-group-item">
+            <div>
+              <p><strong>User Name:</strong> {{user}}</p>
+            </div>
+            <div>
+              <p><strong>Score:</strong> {{score}}</p>
+            </div>
           </li>
           {{/each}}
-        </ul>
+        </ol>
       </div>
     </div>
   </div>
 </div>
+{{!-- mini code ****************************** --}}
+{{!-- <div id="div-container">
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+   <div id= "container-box"class="container"> -->
+      <div class="row">
+       <ul id="messages"></ul>
+     </div>
+     <div class="row">
+         <div class="col-lg-6">
+           <form action="">
+             <div class="input-group">
+                 <input id="m" autocomplete="off" type="text" class="form-control" placeholder="Message..." aria-label="Message...">
+                 <span class="input-group-btn">
+                   <button class="btn btn-secondary" type="submit">Send</button>
+                 </span>
+               </div>
+           </form>
+         </div>
+       </div>
+   </div>
+ </div> --}}
+
+{{!-- mini code ****************************** --}}
