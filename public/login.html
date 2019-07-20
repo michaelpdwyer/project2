@@ -2,16 +2,20 @@
 <html lang="en">
 
 <head>
-  <title>Passport Authentication</title>
+  <title>Login</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="styles/mdb.min.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
 </head>
 
 <body>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
+      <h1 class="animated bounceInRight slow">Blocker Buster</h1>
       <div class="navbar-header">
       </div>
     </div>
@@ -19,24 +23,24 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <h2>Login Form</h2>
+        <h2 class="animated rubberBand delay-3s infinite slow">Log in to play!</h2>
         <form class="login">
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1" class="inputs animated bounceInLeft delay-1s">Email</label>
             <input type="email" class="form-control" id="email-input" placeholder="Email">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="exampleInputPassword1" class="inputs animated bounceInRight delay-2s">Password</label>
             <input type="password" class="form-control" id="password-input" placeholder="Password">
           </div>
           <div style="display: none" id="alert" class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-default">Login</button>
+          <button type="submit" class="btn btn-default buttonColor buttonText animated zoomIn slow">Login</button>
         </form>
         <br />
-        <p>Or sign up <a href="/">here</a></p>
+        <p class="animated zoomIn slow">...or sign up <a href="/">here</a>!</p>
       </div>
     </div>
   </div>
@@ -44,6 +48,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/login.js"></script>
 
+  <!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script> -->
+  <!-- Bootstrap tooltips -->
+  <!-- <script type="text/javascript" src="js/popper.min.js"></script> -->
+  <!-- Bootstrap core JavaScript -->
+  <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+  <!-- MDB core JavaScript -->
+  <!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
 </body>
 
 </html>

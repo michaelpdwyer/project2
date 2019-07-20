@@ -1,29 +1,28 @@
 <script src="/js/gameBackend.js"></script>
 {{!-- <script src="/js/chatBackend.js"></script> --}}
 
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/logout">
-        Logout
+        <p style="font-family: 'Press Start 2P', cursive;" class="animated bounceInRight slow">Logout</p>
       </a>
     </div>
   </div>
 </nav>
 
 
-  <div id="gameHere">
-  <div id="gameOverScreen">
-      <a href="/game2"><button>Play Game Again</button></a>
-      <a href="/game"><button>Select New Game</button></a>
-  </div>
-  </div>
 
 <div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
+  <div class="container mx-0">
+    <div class="row my-5">
+      <div id="gameHere" class="col-sm-9">
+  <div id="gameOverScreen" class="align-middle mt-5">
+    <a href="/game2"><button class="buttonColor buttonText">Play Again!</button></a>
+    <a href="/game"><button class="buttonColor buttonText">Try Other Game!</button></a>
+  </div>
+</div>
+      <div class="col-sm-3 overflow-auto">
         
         <h3>High Scores:</h3>
         <ol id="example-list" class="list-group">
@@ -64,4 +63,4 @@
  {{!-- mini code ****************************** --}}
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+

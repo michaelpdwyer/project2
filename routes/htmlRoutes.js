@@ -5,6 +5,7 @@ var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 var db = require("../models");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Load index page
@@ -12,7 +13,7 @@ module.exports = function(app) {
     // If the user already has an account send them to the game page
     if (req.user) {
       res.render("index", {
-        msg: "Welcome!",
+        msg: "Welcome,",
         userName: req.user.userName
       });
       //res.redirect("/game");
@@ -35,7 +36,7 @@ module.exports = function(app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/game", isAuthenticated, function(req, res) {
     res.render("index", {
-      msg: "Welcome!",
+      msg: "Welcome,",
       userName: req.user.userName
     });
   });
@@ -85,7 +86,7 @@ module.exports = function(app) {
   });
 
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
+  // app.get("*", function(req, res) {
+  //   res.render("404");
+  // });
 };
