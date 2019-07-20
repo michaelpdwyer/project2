@@ -13,24 +13,100 @@
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
+     
         <div>
-          <h3><strong>{{msg}} {{userName}}!</strong></h3>
+          <h3 class="text-center"><strong>{{msg}} {{userName}}!</strong></h3>
         </div><br>
-        <h2 class="animated flipInX delay-1s">About the Front-End Game</h2>
+        </div>
+        <div class="row">
+        {{!-- <h2 class="animated flipInX delay-1s">About the Front-End Game</h2>
         <p>In this game, run, jump, and dodge your way through treacherous terrain in search of all the skills you need
           to build an impressive front-end for a website or app. Use your blaster to break the cages and snatch up icons
           for HTML, CSS, and others. You’ll be creating polished front-ends in no time!</p>
-        <a href="/game1"><button id="game1" class="userButtonColor userButtonText">Front-End Game</button></a>
+        <a href="/game1"><button id="game1" class="userButtonColor userButtonText">Front-End Game</button></a> --}}
 
-        <h2 class="animated flipInX delay-2s">About the Back-End Game</h2>
+
+
+
+        <!-- Card Wider -->
+        <div class="card card-cascade wider animated flipInX delay-1s col-sm-6">
+
+          <!-- Card image -->
+          <div class="view view-cascade overlay">
+            <img class="card-img-top" src="/assets/frontend.gif" alt="Card image cap">
+            <a href="/game1"></a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body card-body-cascade text-center">
+
+            <!-- Title -->
+            <h4 class="card-title"><strong>Front-End Game</strong></h4>
+
+            <!-- Text -->
+            <p class="card-text">In this game, run, jump, and dodge your way through treacherous terrain in search of
+              all the skills you need
+              to build an impressive front-end for a website or app. Use your blaster to break the cages and snatch up
+              icons
+              for HTML, CSS, and others. You’ll be creating polished front-ends in no time!</p>
+
+            <!-- button -->
+            <a href="/game1"><button id="game1" class="userButtonColor userButtonText">Front-End Game</button></a>
+            <!-- footer -->
+            <div class="card-footer text-muted text-center mt-4">
+              2 days ago
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Card Wider -->
+
+        <!-- Card Wider -->
+        <div class="card card-cascade wider animated flipInX delay-2s col-sm-6">
+
+          <!-- Card image -->
+          <div class="view view-cascade overlay">
+            <img class="card-img-top" src="/assets/backend.gif" alt="Card image cap">
+            <a href="/game1">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body card-body-cascade text-center">
+
+            <!-- Title -->
+            <h4 class="card-title"><strong>Back-End Game</strong></h4>
+
+            <!-- Text -->
+            <p class="card-text">Now that you’ve gathered your front-end skills, it’s time to complete your full-stack
+              journey. Continue your
+              journey by snatching up the skills you need to configure a functioning back-end for your project. Continue
+              to
+              blast away cages and pick up icons for MySQL, Node.js, and all the other important back-end technologies.
+              Full-stack developer status is almost yours!</p>
+
+            <!-- button -->
+            <a href="/game2"><button id="game2" class="userButtonColor userButtonText">Back-End Game</button></a>
+            <!-- footer -->
+            <div class="card-footer text-muted text-center mt-4">
+              2 days ago
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Card Wider -->
+
+        {{!-- <h2 class="animated flipInX delay-2s">About the Back-End Game</h2>
         <p>Now that you’ve gathered your front-end skills, it’s time to complete your full-stack journey. Continue your
           journey by snatching up the skills you need to configure a functioning back-end for your project. Continue to
           blast away cages and pick up icons for MySQL, Node.js, and all the other important back-end technologies.
           Full-stack developer status is almost yours!</p><br>
 
 
-        <a href="/game2"><button id="game2" class="userButtonColor userButtonText">Back-End Game</button></a>
+        <a href="/game2"><button id="game2" class="userButtonColor userButtonText">Back-End Game</button></a> --}}
       </div>
     </div>
   </div>
