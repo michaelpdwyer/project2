@@ -20,9 +20,16 @@
     "mdbootstrap": "^4.8.5",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
+    "sequelize": "^5.10.0",
     "phaser": "^3.18.1",
-    "sequelize": "^5.10.0"
+    "@google-cloud/storage": "^3.0.2",
+    "@google-cloud/translate": "^4.1.1",
+    "google-translate": "^2.3.0",
+    "http": "0.0.0",
+    "save": "^2.4.0",
+    "socket.io": "^2.2.0",
+    "passport-local": "^1.0.0",
+  
   },
   "devDependencies": {
     "chai": "^4.2.0",
