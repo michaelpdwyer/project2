@@ -7,10 +7,6 @@ form.login {
   margin-top: 50px;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 18718336bbbd0e8f51d22ee8280466c33e781e98
 #gameOverScreen {
   display: none;
   text-align: center;
@@ -22,14 +18,13 @@ form.login {
   height: 100%;
   z-index: 20;
   opacity: .8;
-<<<<<<< HEAD
 }
 
 #gameHere {
   position: relative;
 }
 
-/* mini code ******************* */
+/* mini code *******************
 #div-container{
   width: 600px;
   position: fixed;
@@ -44,12 +39,9 @@ form.login {
     #messages { list-style-type: none; margin: 0; padding-right: 5px; padding-left: 5px;width: 90%;}
     #messages li { padding: 5px ;right: 5px }
     #messages li:nth-child(odd) { background: rgba(255, 192, 203, 0.383);}
-=======
- }
+
+ } */
  
- #gameHere {
-  position: relative;
- }
 
 h1 {
   font-family: 'Press Start 2P', cursive;
@@ -99,4 +91,4 @@ input, p {
   font-weight: bolder;
   color: #3C3C3C
 }
->>>>>>> 18718336bbbd0e8f51d22ee8280466c33e781e98
+
