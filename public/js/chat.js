@@ -1,4 +1,12 @@
 
+$(document).ready(function(){ 
+    $("#message").keyup(function(event){
+        if(event.keyCode == 32){
+            $("input").val($("input").val()+' ');
+        }; 
+});
+});
+
 function clientConnect(){
   var socket = io();
 
