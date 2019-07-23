@@ -2,6 +2,11 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require("express-session");
+
+
+
+
+
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
@@ -11,8 +16,9 @@ var app = express();
 
 var PORT = process.env.PORT || 3000;
 
+// var server = app.listen(PORT);
 // //app.set('port', PORT);
-// var http = require('http');
+ var http = require('http').Server(app);
 
 // var server = http.createServer(app);
 // var io = require('socket.io').listen(server);
@@ -53,6 +59,21 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // //MINI CODE ***************************************************
+//socket io connection 
+var io = require('socket.io')(http);
+
+io.on("connection", (socket) => {
+  
+  console.log(socket);
+
+  socket.on('send_message', (data) =>{
+    io.sockets.emit('receive_message', {message: data.message, username : data.username})
+  })
+
+  });
+
+
+
 // // tech namespace
 // // var tech = io.of('/tech');
 
@@ -85,7 +106,7 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+  http.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
