@@ -4,6 +4,18 @@ $(document).ready(function(){
         if(event.keyCode == 32){
             $("input").val($("input").val()+' ');
         }; 
+        if(event.keyCode == 65){
+            $("input").val($("input").val()+'a');
+        }; 
+        if(event.keyCode == 87){
+            $("input").val($("input").val()+'w');
+        }; 
+        if(event.keyCode == 68){
+            $("input").val($("input").val()+'d');
+        }; 
+        if(event.keyCode == 83){
+            $("input").val($("input").val()+'s');
+        }; 
 });
 });
 
