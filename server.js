@@ -67,6 +67,7 @@ io.on("connection", (socket) => {
   console.log(socket);
 
   socket.on('send_message', (data) =>{
+    console.log(data.message);
     io.sockets.emit('receive_message', {message: data.message, username : data.username})
   })
 
