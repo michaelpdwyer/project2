@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* The Modal (background) */
+
+  .modal {
+ 
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: 0;
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on bottom */
+    padding-bottom: 10px;
+    /* Location of the box */
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    /* Full width */
+    height: 45%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color:rgba(128, 58, 0, 0.657);
+    /* Fallback color */
+    background-color: rgba(4, 117, 117, 0.931);
+    /* Black w/ opacity */
+    position: bottom;
+  }
+
+ 
+  /* Modal Content */
+
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 10px solid rgb(128, 64, 0);
+    width: 90%;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatebottom;
+    animation-duration: 0.4s
+  }
+
+  /* Add Animation */
+
+  @-webkit-keyframes animatebottom {
+    from {
+      bottom: -300px;
+      opacity: 0
+    }
+
+    to {
+      bottom: 0;
+      opacity: 1
+    }
+  }
+
+  @keyframes animatebottom {
+    from {
+      bottom: -300px;
+      opacity: 0
+    }
+
+    to {
+      bottom: 0;
+      opacity: 1
+    }
+  }
+
+  /* The Close Button */
+  .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal-header {
+    padding: 2px 5px;
+    background-color: orange;
+    color: white;
+  }
+
+  .modal-body {
+    padding: 2px 16px;
+  }
+
+  .modal-footer {
+    padding: 2px 2px;
+    background-color: orange;
+    color: white;
+  }
+
+  .chat-box {
+    height: 270px;
+    width: 400px;
+  }
+
+  .force-to-bottom {
+    position: fixed;
+    bottom: 10%;
+    width: 100%;
+  }
+
+  .modal-dialog {
+    position: fixed;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: 0;
+  }
+
+  #messages {
+    list-style-type: none;
+    margin: 0;
+    padding-right: 5px;
+    padding-left: 5px;
+    width: 80%;
+  }
+
+  #messages li {
+    padding: 5px;
+    right: 10px;
+  }
+
+  #messages li:nth-child(odd) {
+    background: rgba(255, 192, 203, 0.383);
+  }
+  #input-span{
+    width: 20px;
+    height:30px;
+    right: 1px;
+    position: fixed;
+  }

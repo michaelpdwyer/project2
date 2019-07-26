@@ -32,7 +32,8 @@ $(document).ready(function() {
       email: email,
       password: password
     })
-      .then(function() {
+      .then(function(data) {
+        localStorage.setItem("username", data.userName);
         window.location.replace("/game");
         // If there's an error, handle it by throwing up a bootstrap alert
       })

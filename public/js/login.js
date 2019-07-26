@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
   // Getting references to our form and inputs
   var loginForm = $("form.login");
@@ -28,7 +30,8 @@ $(document).ready(function() {
       email: email,
       password: password
     })
-      .then(function() {
+      .then(function(data) {
+        localStorage.setItem("username", data.userName);
         window.location.replace("/game");
         // If there's an error, log the error
       })
