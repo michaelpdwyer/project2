@@ -65,11 +65,14 @@ function clientConnect() {
 
       socket.on("receive_message", (data) =>{
         console.log(data.message)
-        displayChat.append("<p class='message'>" +data.username + ":" + data.message +"</p>");
+        displayChat.append("<p class='message'>" +data.username + ": " + data.message +"</p>");
+        $("#displayChat1").scrollTop($("#displayChat1")[0].scrollHeight);
     }); 
   };
   
   clientConnect();
+
+  
   
 
  
