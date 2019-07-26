@@ -1,6 +1,6 @@
 
 $(document).ready(function(){ 
-    $("#message").keyup(function(event){
+    $("#message2").keyup(function(event){
         if(event.keyCode == 32){
             $("input").val($("input").val()+' ');
         }; 
@@ -45,22 +45,28 @@ $(document).ready(function(){
 });
 
 function clientConnect(){
-  var socket = io();
+  var room = "chat2";
+  var socket = io('/game');
 
   var message = $("#message2");
   var send_message = $("#send_message2");
   var displayChat = $("#displayChat2");
 
 
-
    send_message.click(function(event){
        event.preventDefault();
      //socket.emit("add_username", {username: "paul" });
      
-        socket.emit("send_message", {message: message.val().trim(), username: localStorage.getItem("username")});
+        socket.emit("send_message", {message: message.val().trim(), username: localStorage.getItem("username"), room: room});
+        message.val('');
       });
+
+      socket.on('connect', () => {
+        socket.emit('join', { room: "chat2" });
+      });
+
       socket.on("receive_message", (data) =>{
-        console.log(data)
+        console.log(data.message)
         displayChat.append("<p class='message'>" +data.username + ":" + data.message +"</p>");
     }); 
   };

@@ -88,7 +88,7 @@
                   </div>
         <div class="modal-body">
 
-          <div class="chat-box">
+          {{!-- <div class="chat-box">
             <div class="chat-closed"> </div>
             <div class="chat-header hide">
               <div class="box"></div></div>
@@ -102,19 +102,19 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
           <!-- <div class="modal-footer"> -->
             <div id="chat1">
-              <div id="displayChat1"></div>
-              <form action="">
-                          <div class="input-group">
-                              <input id="message1" autocomplete="off" type="text" class="form-control" placeholder="Message..." aria-label="Message...">
-                              <span class="input-group-btn">
-                                <button class="btn btn-secondary" id="send_message1" type="submit">Send</button>
-                              </span>
-                            </div>
-                        </form>
-               </div>
+              <div id="displayChat1" style="overflow: scroll; max-height: 325px; min-height: 325px;"></div>
+                <form action="">
+                  <div class="input-group">
+                      <input id="message1" autocomplete="off" type="text" placeholder="Message..." aria-label="Message..." style="position: fixed;bottom: 5px;margin-left: -15px; border-radius: 5px;padding: 5px; width: 341px;">
+                      <span class="input-group-btn">
+                        <button class="btn btn-secondary" id="send_message1" type="submit" style="position: fixed; bottom: -1px; margin-left: 333px; border-radius: 5px;padding: 10px; width: 133px;">Send</button>
+                      </span>
+                    </div>
+                </form>
+            </div>
           </div>
         </div>
       </div>

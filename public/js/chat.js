@@ -1,6 +1,6 @@
 
 $(document).ready(function(){ 
-    $("#message").keyup(function(event){
+    $("#message1").keyup(function(event){
         if(event.keyCode == 32){
             $("input").val($("input").val()+' ');
         }; 
@@ -43,23 +43,28 @@ window.onclick = function (event) {
 }
 });
 
-function clientConnect(){
-  var socket = io();
+function clientConnect() {
+  var room = "chat1";
+  var socket = io('/game');
 
   var message = $("#message1");
   var send_message = $("#send_message1");
   var displayChat = $("#displayChat1");
 
-
-
    send_message.click(function(event){
        event.preventDefault();
      //socket.emit("add_username", {username: "paul" });
      
-        socket.emit("send_message", {message: message.val().trim(), username: localStorage.getItem("username")});
+        socket.emit("send_message", {message: message.val().trim(), username: localStorage.getItem("username"), room: room});
+        message.val('');
       });
+
+      socket.on('connect', () => {
+        socket.emit('join', { room: room });
+      });
+
       socket.on("receive_message", (data) =>{
-        console.log(data)
+        console.log(data.message)
         displayChat.append("<p class='message'>" +data.username + ":" + data.message +"</p>");
     }); 
   };

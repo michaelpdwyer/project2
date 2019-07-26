@@ -5,7 +5,7 @@ body {
   /* The Modal (background) */
 
   .modal {
-    position: fixed;
+ 
     top: auto;
     right: auto;
     left: auto;
@@ -22,17 +22,18 @@ body {
     bottom: 0;
     width: 30%;
     /* Full width */
-    height: 40%;
+    height: 45%;
     /* Full height */
     overflow: auto;
     /* Enable scroll if needed */
-    background-color: rgba(62, 144, 133, 0.561);
+    background-color:rgba(128, 58, 0, 0.657);
     /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(4, 117, 117, 0.931);
     /* Black w/ opacity */
     position: bottom;
   }
 
+ 
   /* Modal Content */
 
   .modal-content {
@@ -40,7 +41,7 @@ body {
     background-color: #fefefe;
     margin: auto;
     padding: 0;
-    border: 10px solid #888;
+    border: 10px solid rgb(128, 64, 0);
     width: 90%;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: animatebottom;
@@ -135,7 +136,7 @@ body {
 
   #messages li {
     padding: 5px;
-    right: 10px
+    right: 10px;
   }
 
   #messages li:nth-child(odd) {
@@ -145,4 +146,5 @@ body {
     width: 20px;
     height:30px;
     right: 1px;
+    position: fixed;
   }

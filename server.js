@@ -61,17 +61,48 @@ if (process.env.NODE_ENV === "test") {
 // //MINI CODE ***************************************************
 //socket io connection 
 var io = require('socket.io')(http);
+var game = io.of('/game');
 
-io.on("connection", (socket) => {
+game.on("connection", (socket) => {
+  socket.on('join', (data) => {
+    socket.join(data.room);
+    game.in(data.room).emit('message', `New user joined ${data.room} room!`)
+  })
   
-  console.log(socket);
-
   socket.on('send_message', (data) =>{
     console.log(data.message);
-    io.sockets.emit('receive_message', {message: data.message, username : data.username})
+    console.log(data.room);
+    game.in(data.room).emit('receive_message', {message: data.message, username : data.username})
+
+    // io.sockets.emit('receive_message', {message: data.message, username : data.username})
   })
 
   });
+
+// var io = require('socket.io')(http);
+// var game2io = io.of("/game2")
+// game2io.on("connection", (socket) => {
+  
+//   console.log(socket);
+
+//   socket.on('send_message', (data) =>{
+//     console.log(data.message);
+//     game2io.sockets.emit('receive_message', {message: data.message, username : data.username})
+//   })
+
+//   });
+//   var game1io = io.of("/game1")
+//   game1io.on("connection", (socket) => {
+  
+//     console.log(socket);
+  
+//     socket.on('send_message', (data) =>{
+//       console.log(data.message);
+//       game1io.sockets.emit('receive_message', {message: data.message, username : data.username})
+//     })
+  
+//     });
+  
 
 
 
