@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row my-5 d-flex justify-content-center">
+        <h3>Back-End High Scores:</h3>
+        <ol id="example-list" class="list-group">
+            {{#each game}}
+            <li data-id="{{user}}" class="list-group-item">
+                <div><strong>User Name: {{user}}</strong></div>
+                <div>Score: {{score}}</div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+
+</div>

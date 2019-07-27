@@ -53,6 +53,11 @@ module.exports = function(app) {
   // });
 
   app.get("/game1", isAuthenticated, function(req, res) {
+      res.render("game1");
+    });
+ 
+
+  app.get("/scores1", isAuthenticated, function(req, res) {
     db.Game.findAll({
       where: { gameId: 1 },
       include: [db.User]
@@ -62,28 +67,49 @@ module.exports = function(app) {
       }).sort((s1, s2) => {
         return s2.score - s1.score
       })
-      res.render("game1", {
+      res.render("scores1", {
         game: ordered
       });
     });
   });
 
   app.get("/game2", isAuthenticated, function(req, res) {
-    db.Game.findAll({
-      where: { gameId: 2 },
-      // order: 'score DESC',
-      include: [db.User]
-    }).then(function(dbGame) {
-      ordered = dbGame.map(item => {
-        return {user: item.User.userName, score:item.score}
-      }).sort((s1, s2) => {
-        return s2.score - s1.score
-      })
-      res.render("game2", {
-        game: ordered
-      });
+    res.render("game2");
+  });
+
+
+app.get("/scores2", isAuthenticated, function(req, res) {
+  db.Game.findAll({
+    where: { gameId: 2 },
+    include: [db.User]
+  }).then(function(dbGame) {
+    ordered = dbGame.map(item => {
+      return {user: item.User.userName, score:item.score}
+    }).sort((s1, s2) => {
+      return s2.score - s1.score
+    })
+    res.render("scores2", {
+      game: ordered
     });
   });
+});
+
+  // app.get("/game2", isAuthenticated, function(req, res) {
+  //   db.Game.findAll({
+  //     where: { gameId: 2 },
+  //     // order: 'score DESC',
+  //     include: [db.User]
+  //   }).then(function(dbGame) {
+  //     ordered = dbGame.map(item => {
+  //       return {user: item.User.userName, score:item.score}
+  //     }).sort((s1, s2) => {
+  //       return s2.score - s1.score
+  //     })
+  //     res.render("game2", {
+  //       game: ordered
+  //     });
+  //   });
+  // });
 
   // Render 404 page for any unmatched routes
   // app.get("*", function(req, res) {
