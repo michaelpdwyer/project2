@@ -32,7 +32,7 @@ app.use(express.static("public"));
 
 // We need to use sessions to keep track of our user's login status
 app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+  session({ secret: process.env.SECRET, resave: true, saveUninitialized: true })
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -79,62 +79,6 @@ game.on("connection", (socket) => {
 
   });
 
-// var io = require('socket.io')(http);
-// var game2io = io.of("/game2")
-// game2io.on("connection", (socket) => {
-  
-//   console.log(socket);
-
-//   socket.on('send_message', (data) =>{
-//     console.log(data.message);
-//     game2io.sockets.emit('receive_message', {message: data.message, username : data.username})
-//   })
-
-//   });
-//   var game1io = io.of("/game1")
-//   game1io.on("connection", (socket) => {
-  
-//     console.log(socket);
-  
-//     socket.on('send_message', (data) =>{
-//       console.log(data.message);
-//       game1io.sockets.emit('receive_message', {message: data.message, username : data.username})
-//     })
-  
-//     });
-  
-
-
-
-// // tech namespace
-// // var tech = io.of('/tech');
-
-// io.sockets.on('connection', (socket) => {
-//    socket.on('join', (data) => {
-//        socket.join(data.room);
-//        tech.in(data.room).emit('message', `New user joined ${data.room} room!`);
-//    })
-
-//    socket.on('message', (data) => {
-//        console.log(`message: ${data.msg}`);
-//        var translate = new Translate({projectId:'focus-nucleus-240701'});
-//          var text = data.msg;
-//          var target = 'am';
-//          translate
-//          .translate(text, target)
-//          .then(results => {
-//              console.log(results[0]);
-//              tech.in(data.room).emit('message', results[0]);
-//             }).catch(err => {console.error('ERROR:', err);});
-//            });
-
-//    socket.on('disconnect', () => {
-//        console.log('user disconnected');
-
-//        tech.emit('message', 'user disconnected');
-//    })
-// })
-// //MINI CODE ***************************************************
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {

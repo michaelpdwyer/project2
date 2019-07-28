@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/logout">
+                <p style="font-family: 'Press Start 2P', cursive; color: #3d3d3d;" class="animated bounceInRight slow">
+                    Logout</p>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h2 class="text-center my-5">Front-End High Scores</h2>
+    <div class="row d-flex justify-content-between">
+        <h3>User Name</h3>
+        <h3>Score</h3>  
+    </div>
+    
+    <div class="row d-flex justify-content-center mb-5">
+
+        <ol id="example-list" class="list-group col-sm-12">
+            {{#each game}}
+            <li data-id="{{user}}" class="list-group-item">
+                <div class="float-left">{{user}}</div>
+                <div class="float-right">{{score}}</div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+
+    <div class="row d-flex justify-content-center mb-5">
+        <a href="/game1"><button class="userButtonColor userButtonText mr-2">Play Game</button></a>
+        <a href="/game"><button class="userButtonColor userButtonText ml-2">Switch Games</button></a>
+    </div>
+
+</div>

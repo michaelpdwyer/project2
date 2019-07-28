@@ -1,11 +1,11 @@
 <script src="/js/gameBackend.js"></script>
-{{!-- <script src="/js/chatBackend.js"></script> --}}
+
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/logout">
-        <p style="font-family: 'Press Start 2P', cursive;" class="animated bounceInRight slow">Logout</p>
+        <p style="font-family: 'Press Start 2P', cursive; color: #3d3d3d;" class="animated bounceInRight slow">Logout</p>
       </a>
     </div>
   </div>
@@ -13,72 +13,24 @@
 
 
 
-<div id="home">
-  <div class="container mx-0">
-    <div class="row my-5">
-      <div id="gameHere" class="col-sm-9">
-  <div id="gameOverScreen" class="align-middle mt-5">
-    <a href="/game2"><button class="buttonColor buttonText">Play Again!</button></a>
-    <a href="/game"><button class="buttonColor buttonText">Try Other Game!</button></a>
-  </div>
+<div id="home" class="container">
+
+<div class="row my-5 d-flex justify-content-center">
+  <div id="gameHere"></div>
 </div>
-      <div class="col-sm-3 overflow-auto">
-        
-        <h3>High Scores:</h3>
-        <ol id="example-list" class="list-group">
-          {{#each game}}
-          <li data-id="{{user}}" class="list-group-item">
-            <div><strong>User Name: {{user}}</strong></div>
-            <div>Score: {{score}}</div>
-          </li>
-          {{/each}}
-        </ol>
-      </div>
-    </div>
-  </div>
+  
+  <div class="row d-flex justify-content-center">
+  <a href="/game2"><button class="buttonColor buttonText">Play Again</button></a>
+  <a href="/game"><button class="buttonColor buttonText">Switch Games</button></a>
+  <button id="myBtn" class="buttonColor buttonText" >Chat</button>
+  <a href="/scores2"><button class="buttonColor buttonText">View High Scores</button></a>
+</div>
+ 
 </div>
 
-{{!-- mini code ****************************** --}}
-{{!-- <div id="div-container">
 
-   <div id= "container-box"class="container"> -->
-      <div class="row">
-       <ul id="messages"></ul>
-     </div>
-     <div class="row">
-         <div class="col-lg-6">
-           <form action="">
-             <div class="input-group">
-                 <input id="m" autocomplete="off" type="text" class="form-control" placeholder="Message..." aria-label="Message...">
-                 <span class="input-group-btn">
-                   <button class="btn btn-secondary" type="submit">Send</button>
-                 </span>
-               </div>
-           </form>
-         </div>
-       </div>
-   </div>
- </div> --}}
 
- {{!-- <div id="chat2">
- <div id="displayChat2"></div>
- <form action="">
-             <div class="input-group">
-                 <input id="message2" autocomplete="off" type="text" class="form-control" placeholder="Message..." aria-label="Message...">
-                 <span class="input-group-btn">
-                   <button class="btn btn-secondary" id="send_message2" type="submit">Send</button>
-                 </span>
-               </div>
-           </form>
-  </div> --}}
 
- <div class="container">
-    <div class="row force-to-bottom text-center">
-      <div class="col-xs-12">
-
-        <button id="myBtn">Backend Chat</button>
-      </div>
-    </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
@@ -89,27 +41,12 @@
                   </div>
         <div class="modal-body">
 
-          <div class="chat-box">
-            <div class="chat-closed"> </div>
-            <div class="chat-header hide">
-              <div class="box"></div></div>
-            <div class="chat-content hide">
-
-              <div id="div-container">
-
-                <div class="row">
-                  <ul id="messages"></ul>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <!-- <div class="modal-footer"> -->
+          
             <div id="chat2">
               <div id="displayChat2"style="overflow: scroll; max-height: 325px; min-height: 325px;"></div>
               <form action="">
                           <div class="input-group">
-                              <input id="message2" autocomplete="off" type="text" class="form-control" placeholder="Message..." aria-label="Message..."style="position: fixed;bottom: 5px;margin-left: -15px; border-radius: 5px;padding: 5px; width: 341px;>
+                              <input id="message2" autocomplete="off" type="text" class="form-control" placeholder="Message..." aria-label="Message..."style="position: fixed;bottom: 5px;margin-left: -15px; border-radius: 5px;padding: 5px; width: 341px;">
                               <span class="input-group-btn">
                                 <button class="btn btn-secondary" id="send_message2" type="submit"style="position: fixed; bottom: -1px; margin-left: 333px; border-radius: 5px;padding: 10px; width: 133px;">Send</button>
                               </span>
@@ -126,7 +63,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
   <script src="/js/chat2.js"></script>
   
- {{!-- mini code ****************************** --}}
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
